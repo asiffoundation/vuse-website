@@ -48,7 +48,7 @@ Chép ảnh thật vào `public/images/site/` với đúng tên, rồi đổi đ
 
 | | Việc | Ghi chú |
 |---|---|---|
-| [ ] | Chạy migration `supabase/migrations/0004_project_funding.sql` | Để có ô "Mục tiêu gây quỹ" trong /admin |
+| [x] | Chạy migration `supabase/migrations/0004_project_funding.sql` | Để có ô "Mục tiêu gây quỹ" trong /admin |
 | [ ] | Tạo tài khoản admin, **tắt đăng ký công khai** trên Supabase | Ai đăng nhập được đều có quyền admin |
 | [ ] | Biến môi trường trên Vercel | `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `NEXT_PUBLIC_SITE_URL` |
 | [ ] | (Tuỳ chọn) Gửi email qua Resend | `RESEND_API_KEY`, xác thực domain `vu-se.com` |
