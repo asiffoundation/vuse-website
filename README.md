@@ -74,6 +74,30 @@ supabase/migrations/      # 0001 bảng+RLS, 0002 storage, 0003 seed
 3. Push nhánh chính → production; mỗi PR → preview URL.
 4. Gắn domain `www.vu-se.com` trong **Domains**.
 
+> Lưu ý: một tài khoản GitHub chỉ liên kết được với **một** tài khoản Vercel. Nếu GitHub hiện tại đã gắn với Vercel khác, xem mục dưới.
+
+## Chuyển sang tài khoản GitHub mới
+
+Dùng khi tài khoản GitHub hiện tại đã liên kết với một tài khoản Vercel khác.
+
+1. Tạo tài khoản GitHub mới (email khác, bật 2FA).
+2. Đưa repo sang tài khoản mới — chọn một cách:
+   - **Transfer ownership** (giữ nguyên lịch sử): repo → Settings → Danger Zone → *Transfer ownership* → nhập tên tài khoản mới → tài khoản mới chấp nhận qua email.
+   - **Hoặc push sang repo mới:**
+     ```bash
+     git clone https://github.com/<tai-khoan-cu>/vuse-website.git
+     cd vuse-website
+     git remote set-url origin https://github.com/<tai-khoan-moi>/vuse-website.git
+     git push -u origin main
+     ```
+3. Vercel: **Account Settings → Authentication** → kết nối GitHub mới → *Add New → Project* → Import `vuse-website`.
+4. Thêm biến môi trường theo `.env.example`, Deploy, rồi gắn domain.
+5. Sau khi chuyển: cập nhật `origin` trên máy (`git remote set-url origin ...`) và cấp lại quyền repo cho công cụ/AI đang dùng.
+
+## Thứ tự triển khai khuyến nghị
+
+1. Chuyển GitHub (mục trên) → 2. Tạo Supabase, chạy `0001`–`0003`, tạo user admin → 3. Import Vercel + env vars → 4. Đăng nhập `/admin` kiểm tra → 5. Gắn domain `www.vu-se.com` → 6. Thay thông tin thật (danh sách dưới).
+
 ## Việc cần thay bằng thông tin thật
 
 - [ ] Thông tin chuyển khoản trong `src/lib/site.ts` (đang là mẫu).
