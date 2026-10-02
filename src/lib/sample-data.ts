@@ -126,14 +126,6 @@ export const slides = [
   { key: "hard", eyebrow: "Đối tượng phục vụ", title: "Người có hoàn cảnh khó khăn", sub: "Sinh kế bền vững để tự đứng vững bằng đôi chân mình.", tone: "forest" },
 ] as const;
 
-// SỐ MẪU — thay bằng số liệu thật trước khi công bố.
-export const stats = [
-  { value: 1200, suffix: "+", label: "Người được hỗ trợ" },
-  { value: 35, suffix: "", label: "Dự án đã triển khai" },
-  { value: 300, suffix: "+", label: "Tình nguyện viên" },
-  { value: 100, suffix: "%", label: "Minh bạch tài chính" },
-];
-
 // CÂU CHUYỆN MẪU — thay bằng câu chuyện thật (có sự đồng ý của nhân vật).
 export const story = {
   quote: "Nhờ học bổng của Việt Úc, em không phải nghỉ học giữa chừng. Giờ em muốn trở thành cô giáo để giúp lại những bạn nhỏ như em ngày trước.",

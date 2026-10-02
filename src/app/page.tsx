@@ -1,6 +1,5 @@
 import { ArrowRight, Heart, Quote } from "lucide-react";
 import Link from "next/link";
-import Counter from "@/components/Counter";
 import ExpandImage from "@/components/ExpandImage";
 import HeroSlider from "@/components/HeroSlider";
 import Icon from "@/components/Icon";
@@ -15,7 +14,7 @@ import SectionTitle from "@/components/SectionTitle";
 import { btn, cx } from "@/components/ui";
 import { getPartners, getPosts, getPrograms, getProjects } from "@/lib/data";
 import { media, pick } from "@/lib/media";
-import { stats, story } from "@/lib/sample-data";
+import { story } from "@/lib/sample-data";
 
 export const revalidate = 300;
 
@@ -35,18 +34,6 @@ export default async function Home() {
   return (
     <>
       <HeroSlider />
-
-      {/* Tác động — số liệu */}
-      <section className="relative z-10 mx-auto -mt-16 max-w-6xl px-5">
-        <div className="grid grid-cols-2 gap-px overflow-hidden rounded-[2rem] bg-line shadow-2xl shadow-forest/15 ring-1 ring-line md:grid-cols-4">
-          {stats.map((s) => (
-            <div key={s.label} className="bg-white px-5 py-7 text-center md:py-9">
-              <p className="text-4xl font-black tracking-tight text-viet md:text-5xl"><Counter to={s.value} suffix={s.suffix} /></p>
-              <p className="mt-1.5 text-[15px] font-semibold text-ink-soft md:text-base">{s.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* Tuyên ngôn — chữ sáng dần theo cuộn */}
       <section className="mx-auto max-w-5xl px-5 py-24 md:py-36">
