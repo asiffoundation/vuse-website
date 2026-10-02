@@ -1,31 +1,34 @@
 import { ArrowUpRight } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
+import { media, pick } from "@/lib/media";
 import type { Project } from "@/lib/types";
-import Art from "./Art";
+import FundingBar from "./FundingBar";
+import Photo from "./Photo";
 
 export default function ProjectCard({ p, index = 0, className = "" }: { p: Project; index?: number; className?: string }) {
+  const img = p.cover_image_url ?? pick(media.project, index).src;
   return (
     <Link
       href={`/du-an/${p.slug}`}
-      className={`group relative block overflow-hidden rounded-[2rem] bg-forest text-white shadow-xl shadow-forest/20 transition-transform duration-500 hover:-translate-y-2 ${className}`}
+      className={`group flex flex-col overflow-hidden rounded-[2rem] bg-white shadow-lg shadow-forest/5 ring-1 ring-line transition duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-viet/20 ${className}`}
     >
-      <div className="relative aspect-[4/5] overflow-hidden">
-        {p.cover_image_url ? (
-          <Image src={p.cover_image_url} alt={p.title} fill sizes="(max-width:768px) 85vw, 420px" className="object-cover transition-transform duration-700 group-hover:scale-110" />
-        ) : (
-          <Art seed={p.slug} className="size-full transition-transform duration-700 group-hover:scale-110" />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-forest-deep via-forest-deep/30 to-transparent" />
-        <span className="absolute left-5 top-5 text-7xl font-black leading-none text-white/25">{String(index + 1).padStart(2, "0")}</span>
-        <span className="glass absolute right-5 top-5 grid size-12 place-items-center rounded-full transition group-hover:rotate-45 group-hover:bg-sun group-hover:text-ink">
+      <div className="relative aspect-[4/3] overflow-hidden">
+        <Photo src={img} alt={p.title} fill sizes="(max-width:768px) 90vw, 420px" className="transition-transform duration-700 group-hover:scale-110" />
+        <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/50 to-transparent" />
+        {p.audience && <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1 text-xs font-extrabold uppercase tracking-wider text-viet">{p.audience}</span>}
+        <span className="absolute right-4 top-4 grid size-11 place-items-center rounded-full bg-white/20 text-white ring-1 ring-white/40 backdrop-blur transition group-hover:rotate-45 group-hover:bg-sun group-hover:text-ink">
           <ArrowUpRight className="size-5" />
         </span>
-        <div className="absolute inset-x-0 bottom-0 p-6">
-          {p.audience && <span className="mb-3 inline-block rounded-full bg-sun px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider text-ink">{p.audience}</span>}
-          <h3 className="text-2xl font-extrabold leading-tight">{p.title}</h3>
-          <p className="mt-2 line-clamp-2 text-sm text-white/75">{p.summary}</p>
-        </div>
+        {p.status === "completed" && <span className="absolute bottom-4 left-4 rounded-full bg-viet px-3 py-1 text-xs font-bold text-white">Đã hoàn thành</span>}
+      </div>
+      <div className="flex flex-1 flex-col p-6">
+        <h3 className="text-xl font-extrabold leading-snug text-ink transition-colors group-hover:text-viet md:text-2xl">{p.title}</h3>
+        <p className="mt-2 line-clamp-2 text-base leading-relaxed text-ink-soft">{p.summary}</p>
+        {p.goal_amount ? (
+          <div className="mt-auto pt-6"><FundingBar goal={p.goal_amount} raised={p.raised_amount ?? 0} /></div>
+        ) : (
+          <span className="mt-auto pt-5 text-[15px] font-bold text-viet">Xem dự án →</span>
+        )}
       </div>
     </Link>
   );

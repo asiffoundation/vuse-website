@@ -45,6 +45,9 @@ export async function saveContent(table: "projects" | "posts", fd: FormData) {
     row.summary = str(fd, "summary");
     row.audience = str(fd, "audience") || null;
     row.status = str(fd, "status") === "completed" ? "completed" : "ongoing";
+    const goal = Number(str(fd, "goal_amount"));
+    row.goal_amount = goal > 0 ? Math.round(goal) : null;
+    row.raised_amount = Math.max(0, Math.round(Number(str(fd, "raised_amount")) || 0));
   } else {
     row.excerpt = str(fd, "summary");
     row.category = str(fd, "category") || null;

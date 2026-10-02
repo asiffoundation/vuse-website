@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
+import { media } from "@/lib/media";
 import ProjectCard from "@/components/ProjectCard";
 import Reveal from "@/components/Reveal";
 import { getProjects } from "@/lib/data";
@@ -11,7 +12,7 @@ export default async function Projects() {
   const projects = await getProjects();
   return (
     <>
-      <PageHero eyebrow="Các dự án" title="Những hành trình đang được viết tiếp." sub="Mỗi dự án là một lời hứa: không ai bị bỏ lại phía sau." />
+      <PageHero eyebrow="Các dự án" title="Những hành trình đang được viết tiếp." sub="Mỗi dự án là một lời hứa: không ai bị bỏ lại phía sau." image={media.page.projects} />
       <section className="mx-auto max-w-7xl px-5 py-20 md:py-28">
         <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((p, i) => (

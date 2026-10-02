@@ -7,6 +7,9 @@ export type Project = {
   cover_image_url: string | null;
   audience: string | null;
   status: "ongoing" | "completed";
+  /** Mục tiêu gây quỹ (VNĐ); null = không hiển thị thanh tiến độ */
+  goal_amount?: number | null;
+  raised_amount?: number | null;
   published: boolean;
   created_at: string;
 };

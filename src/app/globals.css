@@ -51,8 +51,12 @@ body {
 }
 ::selection { background: var(--color-sun); color: var(--color-ink); }
 :focus-visible { outline: 3px solid var(--color-sun); outline-offset: 3px; border-radius: 6px; }
+/* Tiêu đề tự cân dòng (tránh 1 chữ rơi xuống dòng cuối); đoạn văn ngắt dòng đẹp hơn */
+h1, h2, h3 { text-wrap: balance; }
+p, li { text-wrap: pretty; }
 
-/* Chữ gradient & hiệu ứng dùng lại */
+/* Chữ gradient & hiệu ứng dùng lại — đặt trong layer components để class Tailwind (bg-*, text-*) ghi đè được */
+@layer components {
 .text-gradient {
   background: linear-gradient(100deg, var(--color-aura) 0%, var(--color-sun) 55%, #ffb347 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
@@ -85,7 +89,8 @@ body {
   background: linear-gradient(90deg, transparent, rgb(255 255 255 / .55), transparent);
   animation: shine 3.5s ease-in-out infinite;
 }
-.outline-text { -webkit-text-stroke: 1.5px rgb(255 255 255 / .35); color: transparent; }
+.outline-text { -webkit-text-stroke: 1.5px rgb(255 255 255 / .22); color: transparent; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }

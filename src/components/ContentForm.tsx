@@ -19,6 +19,12 @@ export default function ContentForm({ action, item, kind }: { action: (fd: FormD
             <select name="status" defaultValue={v("status") || "ongoing"} className={input}><option value="ongoing">Đang triển khai</option><option value="completed">Đã hoàn thành</option></select>
           </label>
         </div>
+      ) : null}
+      {kind === "project" ? (
+        <div className="grid gap-4 sm:grid-cols-2">
+          <label className="block text-sm font-bold">Mục tiêu gây quỹ (VNĐ, để trống = ẩn)<input name="goal_amount" type="number" min={0} step={1000} defaultValue={v("goal_amount")} className={input} /></label>
+          <label className="block text-sm font-bold">Đã quyên góp (VNĐ)<input name="raised_amount" type="number" min={0} step={1000} defaultValue={v("raised_amount")} className={input} /></label>
+        </div>
       ) : (
         <label className="block text-sm font-bold">Danh mục<input name="category" defaultValue={v("category")} className={input} /></label>
       )}

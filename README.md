@@ -32,6 +32,7 @@ Chưa có `.env.local` → site dùng **dữ liệu mẫu** (`src/lib/sample-dat
 | `/tin-tuc`, `/tin-tuc/[slug]` | Danh sách & chi tiết bài viết |
 | `/tham-gia?tab=volunteer\|partner\|donate` | Form tình nguyện viên / hợp tác / donate (kèm thông tin chuyển khoản) |
 | `/lien-he` | Thông tin liên hệ, form, Google Maps |
+| `/chinh-sach-bao-mat`, `/dieu-khoan` | Chính sách bảo mật (theo NĐ 13/2023), điều khoản sử dụng |
 | `/admin` | CMS: dự án, tin tức, xem form & donate (cần đăng nhập) |
 
 ## Thiết kế
@@ -39,8 +40,9 @@ Chưa có `.env.local` → site dùng **dữ liệu mẫu** (`src/lib/sample-dat
 - Font: **Plus Jakarta Sans** (`next/font`, subset `vietnamese`).
 - Màu: theo bộ nhận diện v1.0 — token ở `src/app/globals.css` (`@theme`).
 - Hiệu ứng: `motion` (reveal, tilt 3D, slider), aurora/grain thuần CSS, tôn trọng `prefers-reduced-motion`.
-- Ảnh bìa chưa có → `Art` tự sinh gradient + cỏ 4 lá. Có ảnh thật (upload ở `/admin`) thì tự dùng.
-- Ảnh cố định (logo…) ở `public/images/`; ảnh admin tải lên ở Supabase Storage bucket `media`.
+- Hướng "Câu chuyện thật": ảnh lớn, nền sáng, chữ ≥ 15px. Hiệu ứng: banner ảnh Ken Burns, chữ sáng dần theo cuộn, ảnh mở rộng khi cuộn, thẻ lĩnh vực xếp chồng (sticky), dải ảnh chạy, thanh tiến độ gây quỹ, nút chia sẻ Facebook/Zalo.
+- **Ảnh cố định** (banner, nhóm đối tượng, lĩnh vực, khoảnh khắc…) khai báo ở `src/lib/media.ts`, file ở `public/images/site/`. Hiện là **ảnh tạm** (SVG màu thương hiệu) — thay bằng ảnh thật cùng tên rồi đổi đuôi trong `media.ts`.
+- Ảnh dự án / tin tức: tải lên ở `/admin` (Supabase Storage bucket `media`); chưa có thì dùng ảnh tạm.
 
 ## Cấu trúc thư mục
 
@@ -55,13 +57,13 @@ src/
     admin-actions.ts      # Server Actions cho CMS (yêu cầu đăng nhập)
     sample-data.ts, site.ts, types.ts, email.ts
   proxy.ts                # Next 16: bảo vệ /admin/*
-supabase/migrations/      # 0001 bảng+RLS, 0002 storage, 0003 seed
+supabase/migrations/      # 0001 bảng+RLS, 0002 storage, 0003 seed, 0004 gây quỹ dự án
 ```
 
 ## Cài Supabase
 
 1. Tạo project tại [supabase.com](https://supabase.com).
-2. **SQL Editor** → chạy lần lượt `0001_init.sql`, `0002_storage.sql`, `0003_seed.sql`.
+2. **SQL Editor** → chạy lần lượt `0001_init.sql`, `0002_storage.sql`, `0003_seed.sql`, `0004_project_funding.sql` (mục tiêu gây quỹ cho dự án).
    RLS: nội dung ai cũng đọc (bài nháp thì không); khách chỉ **gửi** được form (không đọc); admin đăng nhập mới đọc/ghi.
 3. **Authentication → Users**: tạo tài khoản admin (tắt đăng ký công khai ở Providers → Email).
 4. Copy `.env.example` → `.env.local`, điền `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
@@ -96,13 +98,16 @@ Dùng khi tài khoản GitHub hiện tại đã liên kết với một tài kho
 
 ## Thứ tự triển khai khuyến nghị
 
-1. Chuyển GitHub (mục trên) → 2. Tạo Supabase, chạy `0001`–`0003`, tạo user admin → 3. Import Vercel + env vars → 4. Đăng nhập `/admin` kiểm tra → 5. Gắn domain `www.vu-se.com` → 6. Thay thông tin thật (danh sách dưới).
+1. ~~Chuyển GitHub~~ (đã xong: `asiffoundation/vuse-website`) → 2. Tạo Supabase, chạy `0001`–`0003`, tạo user admin → 3. Import Vercel + env vars → 4. Đăng nhập `/admin` kiểm tra → 5. Gắn domain `www.vu-se.com` → 6. Thay thông tin thật (danh sách dưới).
 
 ## Việc cần thay bằng thông tin thật
 
 - [ ] Thông tin chuyển khoản trong `src/lib/site.ts` (đang là mẫu).
 - [ ] Link nhúng Google Maps (`site.mapEmbed`) và link Fanpage chính xác.
-- [ ] Ảnh thật cho 5 slide banner, dự án, đối tác (logo) — upload qua `/admin`.
+- [ ] Ảnh thật: thay file trong `public/images/site/` (danh sách ở `src/lib/media.ts`); ảnh dự án/tin tức và logo đối tác upload qua `/admin`.
+- [ ] Số liệu tác động (`stats`) và câu chuyện nhân vật (`story`) trong `src/lib/sample-data.ts` — đang là **số/câu chuyện mẫu**.
+- [ ] Mục tiêu & số đã quyên góp của từng dự án (nhập ở `/admin` sau khi chạy `0004`).
 - [ ] Nội dung dự án/tin tức thật (hiện là mẫu trong `0003_seed.sql`).
 - [ ] Quyết định cổng thanh toán online (hiện: form cam kết + chuyển khoản thủ công + email biên nhận).
-- [ ] Trang chính sách bảo mật / điều khoản; thông tin pháp lý ở footer.
+- [x] Trang chính sách bảo mật / điều khoản (bản nháp — cần rà soát pháp lý).
+- [ ] Thông tin pháp lý thật ở footer (`site.legal` trong `src/lib/site.ts`: tên pháp lý, MST, nơi/ngày cấp).

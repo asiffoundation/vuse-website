@@ -11,6 +11,8 @@ export const sampleProjects: Project[] = [
     cover_image_url: null,
     audience: "Trẻ em, học sinh, sinh viên",
     status: "ongoing",
+    goal_amount: 200000000, // SỐ MẪU
+    raised_amount: 136000000, // SỐ MẪU
     published: true,
     created_at: "2026-01-10",
   },
@@ -23,6 +25,8 @@ export const sampleProjects: Project[] = [
     cover_image_url: null,
     audience: "Người khuyết tật",
     status: "ongoing",
+    goal_amount: 150000000, // SỐ MẪU
+    raised_amount: 58000000, // SỐ MẪU
     published: true,
     created_at: "2026-02-18",
   },
@@ -35,6 +39,8 @@ export const sampleProjects: Project[] = [
     cover_image_url: null,
     audience: "Bệnh nhi và gia đình",
     status: "ongoing",
+    goal_amount: 300000000, // SỐ MẪU
+    raised_amount: 214000000, // SỐ MẪU
     published: true,
     created_at: "2026-03-05",
   },
@@ -120,12 +126,20 @@ export const slides = [
   { key: "hard", eyebrow: "Đối tượng phục vụ", title: "Người có hoàn cảnh khó khăn", sub: "Sinh kế bền vững để tự đứng vững bằng đôi chân mình.", tone: "forest" },
 ] as const;
 
+// SỐ MẪU — thay bằng số liệu thật trước khi công bố.
 export const stats = [
-  { value: 4, suffix: "", label: "Nhóm đối tượng đồng hành" },
-  { value: 4, suffix: "", label: "Lĩnh vực hoạt động" },
-  { value: 5, suffix: "", label: "Giá trị cốt lõi" },
-  { value: 100, suffix: "%", label: "Minh bạch & liêm chính" },
+  { value: 1200, suffix: "+", label: "Người được hỗ trợ" },
+  { value: 35, suffix: "", label: "Dự án đã triển khai" },
+  { value: 300, suffix: "+", label: "Tình nguyện viên" },
+  { value: 100, suffix: "%", label: "Minh bạch tài chính" },
 ];
+
+// CÂU CHUYỆN MẪU — thay bằng câu chuyện thật (có sự đồng ý của nhân vật).
+export const story = {
+  quote: "Nhờ học bổng của Việt Úc, em không phải nghỉ học giữa chừng. Giờ em muốn trở thành cô giáo để giúp lại những bạn nhỏ như em ngày trước.",
+  name: "Em Lan (nhân vật mẫu)",
+  role: "Học sinh lớp 9 · Chương trình Đồng hành cùng em đến trường",
+};
 
 export const values = [
   { en: "Humanity", vi: "Nhân ái", text: "Lấy con người làm gốc rễ của mọi hành động; đặt phẩm giá và hạnh phúc của mỗi cá nhân lên hàng đầu." },

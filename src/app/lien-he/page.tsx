@@ -3,6 +3,7 @@ import { Facebook } from "@/components/Icon";
 import type { Metadata } from "next";
 import ContactForm from "@/components/ContactForm";
 import PageHero from "@/components/PageHero";
+import { media } from "@/lib/media";
 import Reveal from "@/components/Reveal";
 import { site } from "@/lib/site";
 
@@ -19,14 +20,14 @@ const items = [
 export default function Contact() {
   return (
     <>
-      <PageHero eyebrow="Liên hệ" title="Hãy nói chuyện với Việt Úc." sub="Câu hỏi, ý tưởng hợp tác hay chỉ một lời chào — chúng tôi luôn lắng nghe." />
+      <PageHero eyebrow="Liên hệ" title="Hãy nói chuyện với Việt Úc." sub="Câu hỏi, ý tưởng hợp tác hay chỉ một lời chào — chúng tôi luôn lắng nghe." image={media.page.contact} />
       <section className="mx-auto grid max-w-7xl gap-10 px-5 py-16 md:py-24 lg:grid-cols-2">
         <Reveal className="space-y-3">
           {items.map((it) => (
             <div key={it.label} className="flex items-center gap-4 rounded-2xl bg-white p-4 ring-1 ring-line transition hover:-translate-y-0.5 hover:shadow-lg">
               <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-mist text-viet"><it.icon className="size-5" /></span>
               <div className="min-w-0">
-                <p className="text-xs font-bold uppercase tracking-wider text-ink-soft">{it.label}</p>
+                <p className="text-[13px] font-bold uppercase tracking-wider text-ink-soft">{it.label}</p>
                 {it.href ? <a href={it.href} className="break-words font-bold hover:text-viet" target={it.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">{it.value}</a> : <p className="font-bold">{it.value}</p>}
               </div>
             </div>
