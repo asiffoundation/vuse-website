@@ -1,110 +1,84 @@
-# Website [TÊN DỰ ÁN]
+# Website Doanh nghiệp xã hội Việt Úc (VUSE)
 
-Next.js (App Router) + Supabase (DB/Storage/Auth làm CMS) + Vercel + GitHub.
-
-## Kiến trúc
+Next.js 16 (App Router) + Tailwind 4 + Supabase (DB/Storage/Auth làm CMS) + Vercel + GitHub.
 
 ```
-GitHub (source code, version control)
-   │  mỗi push → trigger build
-   ▼
-Vercel (hosting + build + CDN)
-   │  gọi API lúc runtime
-   ▼
-Supabase (Postgres DB + Storage + Auth) = "CMS" không cần code riêng
+GitHub (source code)  →  Vercel (build/host/CDN)  →  Supabase (Postgres + Storage + Auth = CMS)
 ```
 
-- **GitHub**: chứa source code, mỗi PR tự có preview deploy trên Vercel.
-- **Vercel**: build & host Next.js, ISR (`revalidate`) cho các trang cần cập nhật định kỳ.
-- **Supabase**:
-  - Postgres: các bảng nội dung tuỳ dự án (ví dụ `posts`, `products`, `programs`...),
-    `contact_messages` (liên hệ/đăng ký), `newsletter_subscribers` (nếu có).
-  - Storage: bucket `media` (public) cho ảnh/video admin tải lên.
-  - Auth: bảo vệ trang `/admin` — người quản trị đăng nhập bằng email/password để quản lý nội dung, không cần đụng code.
+- **GitHub**: source code; mỗi PR có preview deploy trên Vercel.
+- **Vercel**: build & host Next.js, ISR (`revalidate = 300`) cho trang công khai.
+- **Supabase**: Postgres (nội dung + dữ liệu form), Storage bucket `media`, Auth cho `/admin`.
 
-## Nguyên tắc dữ liệu: Supabase Storage vs. ảnh trong code
+Nội dung/sitemap gốc: `Website_Viet_Uc/CAU TRUC WEB VIET UC.docx`. Bộ nhận diện: `Website_Viet_Uc/NHAN DIEN THUONG HIEU/`.
 
-| Loại ảnh | Lưu ở đâu | Khi nào dùng |
-|---|---|---|
-| Ảnh cố định có sẵn lúc code (hero, logo, ảnh minh hoạ tĩnh...) | `public/images/` trong repo, deploy kèm code | Nhanh, miễn phí băng thông, không cần upload lại |
-| Ảnh admin tự tải lên sau này (bài viết mới, sản phẩm mới...) | Supabase Storage bucket `media` | Cho phép người không biết code tự thêm nội dung |
+## Chạy thử ngay (không cần Supabase)
 
-Code luôn ưu tiên: `cover_image_url` (từ DB/Storage) → nếu rỗng thì fallback về ảnh mặc định trong `public/images/`.
+```bash
+npm install
+npm run dev      # http://localhost:3000
+```
+
+Chưa có `.env.local` → site dùng **dữ liệu mẫu** (`src/lib/sample-data.ts`), các form chạy **chế độ demo** (không lưu), `/admin` chưa đăng nhập được.
+
+## Sitemap
+
+| Route | Nội dung |
+|---|---|
+| `/` | Hero slider 5 slide, giới thiệu, 4 nhóm đối tượng, lĩnh vực, dự án, tầm nhìn/sứ mệnh, giá trị, đối tác, tin tức, CTA |
+| `/ve-chung-toi` | Câu chuyện, ý nghĩa logo, tầm nhìn/sứ mệnh, 5 giá trị cốt lõi |
+| `/linh-vuc` | 4 lĩnh vực: Giáo dục, Sức khỏe, Việc làm & Sinh kế, Cộng đồng yếu thế |
+| `/du-an`, `/du-an/[slug]` | Danh sách & chi tiết dự án |
+| `/tin-tuc`, `/tin-tuc/[slug]` | Danh sách & chi tiết bài viết |
+| `/tham-gia?tab=volunteer\|partner\|donate` | Form tình nguyện viên / hợp tác / donate (kèm thông tin chuyển khoản) |
+| `/lien-he` | Thông tin liên hệ, form, Google Maps |
+| `/admin` | CMS: dự án, tin tức, xem form & donate (cần đăng nhập) |
+
+## Thiết kế
+
+- Font: **Plus Jakarta Sans** (`next/font`, subset `vietnamese`).
+- Màu: theo bộ nhận diện v1.0 — token ở `src/app/globals.css` (`@theme`).
+- Hiệu ứng: `motion` (reveal, tilt 3D, slider), aurora/grain thuần CSS, tôn trọng `prefers-reduced-motion`.
+- Ảnh bìa chưa có → `Art` tự sinh gradient + cỏ 4 lá. Có ảnh thật (upload ở `/admin`) thì tự dùng.
+- Ảnh cố định (logo…) ở `public/images/`; ảnh admin tải lên ở Supabase Storage bucket `media`.
 
 ## Cấu trúc thư mục
 
 ```
 src/
-  app/
-    (public pages)/           # các trang công khai
-    admin/
-      login/                  # trang đăng nhập
-      (dashboard)/            # layout có check auth, các trang CRUD nội dung
-  components/                 # UI dùng chung
+  app/                    # trang công khai + admin/(dashboard)
+  components/             # UI dùng chung (HeroSlider, JoinTabs, Header...)
   lib/
-    supabase/
-      client.ts               # supabase client phía browser
-      server.ts               # supabase client phía server (dùng cookies)
-    types.ts                  # TypeScript types khớp với bảng DB
-supabase/
-  migrations/                 # file SQL đánh số thứ tự 0001, 0002... chạy tay trên Supabase SQL Editor
-  templates/                  # file SQL mẫu để điền nội dung thật (fill-in-the-blank)
-public/
-  images/                     # ảnh xử lý sẵn, bundle theo code (KHÔNG qua Supabase Storage)
+    supabase/             # client.ts (browser), server.ts (cookies + public client)
+    data.ts               # đọc dữ liệu công khai (fallback sample-data)
+    actions.ts            # Server Actions cho form công khai
+    admin-actions.ts      # Server Actions cho CMS (yêu cầu đăng nhập)
+    sample-data.ts, site.ts, types.ts, email.ts
+  proxy.ts                # Next 16: bảo vệ /admin/*
+supabase/migrations/      # 0001 bảng+RLS, 0002 storage, 0003 seed
 ```
 
-## Cài đặt local
+## Cài Supabase
 
 1. Tạo project tại [supabase.com](https://supabase.com).
-2. Vào **SQL Editor**, chạy lần lượt các file trong `supabase/migrations/` theo đúng thứ tự số. Mỗi file nên:
-   - Tạo bảng (`create table if not exists ...`)
-   - Bật RLS (`alter table ... enable row level security`)
-   - Policy đọc công khai: `create policy "... are publicly readable" on ... for select using (true);` (hoặc `using (published = true)` nếu có nháp/chưa publish)
-   - Policy ghi chỉ cho user đã đăng nhập: `create policy "authenticated users manage ..." on ... for all using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');`
-3. Tạo Storage bucket public (`media`) + policy tương tự (đọc công khai, ghi cần đăng nhập).
-4. Vào **Authentication → Users**, tạo tài khoản cho người sẽ quản trị nội dung (không mở đăng ký công khai).
-5. Copy `.env.example` thành `.env.local`, điền `NEXT_PUBLIC_SUPABASE_URL` và `NEXT_PUBLIC_SUPABASE_ANON_KEY` (Project Settings → API).
-6. Chạy:
+2. **SQL Editor** → chạy lần lượt `0001_init.sql`, `0002_storage.sql`, `0003_seed.sql`.
+   RLS: nội dung ai cũng đọc (bài nháp thì không); khách chỉ **gửi** được form (không đọc); admin đăng nhập mới đọc/ghi.
+3. **Authentication → Users**: tạo tài khoản admin (tắt đăng ký công khai ở Providers → Email).
+4. Copy `.env.example` → `.env.local`, điền `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
+5. (Tuỳ chọn) `RESEND_API_KEY` để gửi email thông báo về `info@vu-se.com` và email cảm ơn cho nhà hảo tâm.
 
-   ```bash
-   npm install
-   npm run dev
-   ```
+## Deploy Vercel
 
-7. Trang công khai: [http://localhost:3000](http://localhost:3000). Trang quản trị: [http://localhost:3000/admin](http://localhost:3000/admin).
+1. Import repo GitHub vào Vercel (tự nhận Next.js).
+2. Khai báo env vars ở **Project Settings → Environment Variables** (các biến trong `.env.example`).
+3. Push nhánh chính → production; mỗi PR → preview URL.
+4. Gắn domain `www.vu-se.com` trong **Domains**.
 
-## Quy trình Admin CMS
+## Việc cần thay bằng thông tin thật
 
-- Middleware (`proxy.ts` ở Next.js 16, hoặc `middleware.ts` ở bản cũ hơn) check session Supabase cho mọi route `/admin/*`; chưa login → redirect `/admin/login`.
-- Mỗi loại nội dung có: trang danh sách, form thêm mới, form sửa — dùng **Server Actions** của Next.js để insert/update/delete thẳng vào Supabase, không cần viết API route riêng.
-- Form upload ảnh: component client tải file thẳng lên Supabase Storage, tự điền URL công khai vào input text (vẫn cho sửa tay nếu cần paste URL ngoài).
-
-## Deploy lên Vercel
-
-1. Import repo GitHub này vào Vercel (framework tự nhận diện Next.js).
-2. Khai báo 2 biến môi trường ở trên trong **Project Settings → Environment Variables**.
-3. Mỗi lần push lên nhánh chính sẽ tự deploy production; mỗi PR có preview URL riêng.
-
-## Checklist khi bắt đầu dự án mới từ template này
-
-1. Tạo repo GitHub → khởi tạo Next.js app (App Router + TypeScript + Tailwind).
-2. Tạo Supabase project → viết migration cho bảng dữ liệu riêng của site.
-3. Chạy migration trên SQL Editor, tạo Storage bucket, tạo user admin.
-4. Set env vars local (`.env.local`) + trên Vercel.
-5. Build trang công khai đọc dữ liệu qua `createClient()` phía server, dùng `revalidate` theo nhu cầu.
-6. Build `/admin` với middleware auth + form CRUD + upload ảnh.
-7. Import vào Vercel, deploy, kiểm tra preview trước khi merge vào nhánh chính.
-
-## Sitemap (ví dụ — chỉnh theo dự án thật)
-
-```
-Trang Chủ
-├── Trang A              /duong-dan-a
-├── Trang B              /duong-dan-b
-│   └── /duong-dan-b/[slug]   chi tiết
-├── Tin Tức              /tin-tuc, /tin-tuc/[slug]
-├── Liên Hệ              /lien-he
-└── Tìm Kiếm             /tim-kiem
-
-/admin — khu vực quản trị (yêu cầu đăng nhập): quản lý từng loại nội dung.
-```
+- [ ] Thông tin chuyển khoản trong `src/lib/site.ts` (đang là mẫu).
+- [ ] Link nhúng Google Maps (`site.mapEmbed`) và link Fanpage chính xác.
+- [ ] Ảnh thật cho 5 slide banner, dự án, đối tác (logo) — upload qua `/admin`.
+- [ ] Nội dung dự án/tin tức thật (hiện là mẫu trong `0003_seed.sql`).
+- [ ] Quyết định cổng thanh toán online (hiện: form cam kết + chuyển khoản thủ công + email biên nhận).
+- [ ] Trang chính sách bảo mật / điều khoản; thông tin pháp lý ở footer.

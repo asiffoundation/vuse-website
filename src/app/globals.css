@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+/* Design tokens — theo bộ nhận diện Việt Úc v1.0 (màu) + Plus Jakarta Sans (font web) */
+@theme {
+  --color-viet: #0b7b48;
+  --color-viet-dam: #08603a;
+  --color-amber: #b86d09;
+  --color-amber-ink: #9a5a06;
+  --color-sun: #ffd416;
+  --color-leaf: #68cf30;
+  --color-forest: #0a3d27;
+  --color-forest-deep: #062218;
+  --color-aura: #89ff59;
+  --color-ink: #13261c;
+  --color-ink-soft: #4d6357;
+  --color-line: #d5dfd6;
+  --color-paper: #f6f8f3;
+  --color-mist: #e3f1e6;
+  --font-sans: var(--font-jakarta), "Segoe UI", system-ui, sans-serif;
+  --animate-float: float 8s ease-in-out infinite;
+  --animate-spin-slow: spin 40s linear infinite;
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-aurora: aurora 18s ease-in-out infinite alternate;
+  --animate-shine: shine 3.5s ease-in-out infinite;
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-18px) rotate(3deg); }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes aurora {
+    0% { transform: translate3d(-6%, -4%, 0) scale(1); }
+    50% { transform: translate3d(8%, 6%, 0) scale(1.18); }
+    100% { transform: translate3d(-3%, 10%, 0) scale(1.05); }
+  }
+  @keyframes shine {
+    0% { transform: translateX(-120%) skewX(-20deg); }
+    60%, 100% { transform: translateX(260%) skewX(-20deg); }
+  }
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+::selection { background: var(--color-sun); color: var(--color-ink); }
+:focus-visible { outline: 3px solid var(--color-sun); outline-offset: 3px; border-radius: 6px; }
+
+/* Chữ gradient & hiệu ứng dùng lại */
+.text-gradient {
+  background: linear-gradient(100deg, var(--color-aura) 0%, var(--color-sun) 55%, #ffb347 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.text-gradient-green {
+  background: linear-gradient(100deg, var(--color-viet) 0%, var(--color-leaf) 60%, var(--color-sun) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.glass {
+  background: rgb(255 255 255 / 0.08);
+  border: 1px solid rgb(255 255 255 / 0.16);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+.grain::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .14; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+.dots {
+  background-image: radial-gradient(rgb(255 255 255 / .22) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.dots-dark {
+  background-image: radial-gradient(rgb(11 123 72 / .18) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.btn-shine { position: relative; overflow: hidden; }
+.btn-shine::before {
+  content: ""; position: absolute; inset: 0; width: 40%;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / .55), transparent);
+  animation: shine 3.5s ease-in-out infinite;
+}
+.outline-text { -webkit-text-stroke: 1.5px rgb(255 255 255 / .35); color: transparent; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
