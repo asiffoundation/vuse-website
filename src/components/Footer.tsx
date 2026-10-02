@@ -5,7 +5,7 @@ import { Facebook } from "./Icon";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { nav, site } from "@/lib/site";
+import { legalNav, nav, site } from "@/lib/site";
 
 export default function Footer() {
   if (usePathname().startsWith("/admin")) return null;
@@ -44,8 +44,20 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <div className="relative border-t border-white/10 py-5 text-center text-xs text-white/50">
-        © {new Date().getFullYear()} {site.name}. Mọi quyền được bảo lưu.
+      <div className="relative border-t border-white/10 py-5 text-xs text-white/50">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 md:flex-row md:items-center md:justify-between">
+          <div className="space-y-1">
+            <p>© {new Date().getFullYear()} {site.name}. Mọi quyền được bảo lưu.</p>
+            <p>{site.legal.entity} · MST: {site.legal.taxCode} · {site.legal.issued}</p>
+          </div>
+          <ul className="flex gap-5">
+            {legalNav.map((n) => (
+              <li key={n.href}>
+                <Link href={n.href} className="transition hover:text-white">{n.label}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </footer>
   );

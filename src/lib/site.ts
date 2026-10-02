@@ -17,7 +17,18 @@ export const site = {
     holder: "DNXH VIỆT ÚC",
     note: "HOTEN - SDT - DONATE",
   },
+  // Thông tin pháp lý MẪU hiển thị ở footer — thay bằng thông tin trên giấy phép thật.
+  legal: {
+    entity: "[Tên pháp lý đầy đủ theo giấy chứng nhận đăng ký]",
+    taxCode: "[Mã số doanh nghiệp]",
+    issued: "[Nơi cấp, ngày cấp]",
+  },
 };
+
+export const legalNav = [
+  { href: "/chinh-sach-bao-mat", label: "Chính sách bảo mật" },
+  { href: "/dieu-khoan", label: "Điều khoản sử dụng" },
+];
 
 export const nav = [
   { href: "/", label: "Home" },

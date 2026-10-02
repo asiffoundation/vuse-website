@@ -32,6 +32,7 @@ Chưa có `.env.local` → site dùng **dữ liệu mẫu** (`src/lib/sample-dat
 | `/tin-tuc`, `/tin-tuc/[slug]` | Danh sách & chi tiết bài viết |
 | `/tham-gia?tab=volunteer\|partner\|donate` | Form tình nguyện viên / hợp tác / donate (kèm thông tin chuyển khoản) |
 | `/lien-he` | Thông tin liên hệ, form, Google Maps |
+| `/chinh-sach-bao-mat`, `/dieu-khoan` | Chính sách bảo mật (theo NĐ 13/2023), điều khoản sử dụng |
 | `/admin` | CMS: dự án, tin tức, xem form & donate (cần đăng nhập) |
 
 ## Thiết kế
@@ -96,7 +97,7 @@ Dùng khi tài khoản GitHub hiện tại đã liên kết với một tài kho
 
 ## Thứ tự triển khai khuyến nghị
 
-1. Chuyển GitHub (mục trên) → 2. Tạo Supabase, chạy `0001`–`0003`, tạo user admin → 3. Import Vercel + env vars → 4. Đăng nhập `/admin` kiểm tra → 5. Gắn domain `www.vu-se.com` → 6. Thay thông tin thật (danh sách dưới).
+1. ~~Chuyển GitHub~~ (đã xong: `asiffoundation/vuse-website`) → 2. Tạo Supabase, chạy `0001`–`0003`, tạo user admin → 3. Import Vercel + env vars → 4. Đăng nhập `/admin` kiểm tra → 5. Gắn domain `www.vu-se.com` → 6. Thay thông tin thật (danh sách dưới).
 
 ## Việc cần thay bằng thông tin thật
 
@@ -105,4 +106,5 @@ Dùng khi tài khoản GitHub hiện tại đã liên kết với một tài kho
 - [ ] Ảnh thật cho 5 slide banner, dự án, đối tác (logo) — upload qua `/admin`.
 - [ ] Nội dung dự án/tin tức thật (hiện là mẫu trong `0003_seed.sql`).
 - [ ] Quyết định cổng thanh toán online (hiện: form cam kết + chuyển khoản thủ công + email biên nhận).
-- [ ] Trang chính sách bảo mật / điều khoản; thông tin pháp lý ở footer.
+- [x] Trang chính sách bảo mật / điều khoản (bản nháp — cần rà soát pháp lý).
+- [ ] Thông tin pháp lý thật ở footer (`site.legal` trong `src/lib/site.ts`: tên pháp lý, MST, nơi/ngày cấp).
