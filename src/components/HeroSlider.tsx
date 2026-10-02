@@ -46,7 +46,7 @@ export default function HeroSlider() {
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-forest-deep/90 via-forest-deep/55 to-forest-deep/10" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-1/2 bg-gradient-to-t from-forest-deep/80 to-transparent" />
 
-      <div className="mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-center px-5 pb-48 pt-32">
+      <div className="mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-center px-5 pb-36 pt-32">
         <AnimatePresence mode="wait">
           <motion.div key={s.key} exit={{ opacity: 0, y: -20, transition: { duration: 0.3 } }} className="max-w-3xl">
             <motion.span
@@ -87,7 +87,7 @@ export default function HeroSlider() {
       </div>
 
       {/* Điều khiển slide */}
-      <div className="absolute inset-x-0 bottom-24 mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 md:bottom-28">
+      <div className="absolute inset-x-0 bottom-8 mx-auto flex max-w-7xl items-center justify-between gap-6 px-5">
         <div className="flex flex-1 gap-2" role="tablist" aria-label="Chọn slide">
           {slides.map((sl, k) => (
             <button key={sl.key} role="tab" aria-selected={k === i} aria-label={`Slide ${k + 1}: ${sl.title}`} onClick={() => go(k)} className="h-8 max-w-24 flex-1">
