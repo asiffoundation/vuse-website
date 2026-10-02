@@ -1,21 +1,21 @@
 @import "tailwindcss";
 
-/* Design tokens — theo bộ nhận diện Việt Úc v1.0 (màu) + Plus Jakarta Sans (font web) */
+/* Design tokens — xanh lá theo logo Việt Úc (#007040 / #60d030), tông tươi sáng hơn; chữ trắng trên nền xanh đều ≥ 4.5:1 */
 @theme {
-  --color-viet: #0b7b48;
-  --color-viet-dam: #08603a;
+  --color-viet: #08873f;
+  --color-viet-dam: #077a3a;
   --color-amber: #b86d09;
   --color-amber-ink: #9a5a06;
   --color-sun: #ffd416;
-  --color-leaf: #68cf30;
-  --color-forest: #0a3d27;
-  --color-forest-deep: #062218;
+  --color-leaf: #6fd13a;
+  --color-forest: #0b6e3c;
+  --color-forest-deep: #075530;
   --color-aura: #89ff59;
-  --color-ink: #13261c;
-  --color-ink-soft: #4d6357;
-  --color-line: #d5dfd6;
-  --color-paper: #f6f8f3;
-  --color-mist: #e3f1e6;
+  --color-ink: #14281d;
+  --color-ink-soft: #4a6253;
+  --color-line: #d7e8da;
+  --color-paper: #fafdf7;
+  --color-mist: #e8f7ea;
   --font-sans: var(--font-jakarta), "Segoe UI", system-ui, sans-serif;
   --animate-float: float 8s ease-in-out infinite;
   --animate-spin-slow: spin 40s linear infinite;
