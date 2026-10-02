@@ -22,7 +22,7 @@ export default function ProjectCard({ p, index = 0, className = "" }: { p: Proje
           <ArrowUpRight className="size-5" />
         </span>
         <div className="absolute inset-x-0 bottom-0 p-6">
-          {p.audience && <span className="mb-3 inline-block rounded-full bg-sun px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider text-ink">{p.audience}</span>}
+          {p.audience && <span className="mb-3 inline-block rounded-full bg-sun px-3 py-1 text-xs font-extrabold uppercase tracking-wider text-ink">{p.audience}</span>}
           <h3 className="text-2xl font-extrabold leading-tight">{p.title}</h3>
           <p className="mt-2 line-clamp-2 text-sm text-white/75">{p.summary}</p>
         </div>

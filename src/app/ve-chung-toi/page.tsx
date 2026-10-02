@@ -45,7 +45,7 @@ export default function About() {
                 <Reveal key={c.en} delay={i * 0.08}>
                   <div className="glass h-full rounded-3xl p-6">
                     <Clover className="size-9 text-sun" />
-                    <p className="mt-3 text-xs font-bold uppercase tracking-[0.25em] text-aura">{c.en}</p>
+                    <p className="mt-3 text-[13px] font-bold uppercase tracking-[0.16em] text-aura">{c.en}</p>
                     <h3 className="text-2xl font-extrabold">{c.vi}</h3>
                     <p className="mt-2 text-sm text-white/70">{c.text}</p>
                   </div>
@@ -68,8 +68,8 @@ export default function About() {
 
       <section className="py-24 md:py-32">
         <div className="mx-auto grid max-w-7xl gap-6 px-5 md:grid-cols-2">
-          <Reveal><div className="h-full rounded-[2.5rem] bg-forest p-10 text-white"><p className="text-xs font-extrabold uppercase tracking-[0.28em] text-sun">Tầm nhìn</p><p className="mt-4 text-2xl font-bold leading-snug">Vì một xã hội nơi không ai bị bỏ lại phía sau, nơi mọi tiềm năng được khai phá và mọi trái tim được sưởi ấm bằng tình yêu thương.</p></div></Reveal>
-          <Reveal delay={0.1}><div className="h-full rounded-[2.5rem] bg-sun p-10"><p className="text-xs font-extrabold uppercase tracking-[0.28em] text-amber-ink">Sứ mệnh</p><p className="mt-4 text-2xl font-bold leading-snug">Kết nối cộng đồng, chia sẻ yêu thương, chung tay xây dựng một cộng đồng nhân ái, bền vững, nơi mỗi con người có cơ hội tỏa sáng và sống hạnh phúc.</p></div></Reveal>
+          <Reveal><div className="h-full rounded-[2.5rem] bg-forest p-10 text-white"><p className="text-[13px] font-extrabold uppercase tracking-[0.16em] text-sun">Tầm nhìn</p><p className="mt-4 text-2xl font-bold leading-snug">Vì một xã hội nơi không ai bị bỏ lại phía sau, nơi mọi tiềm năng được khai phá và mọi trái tim được sưởi ấm bằng tình yêu thương.</p></div></Reveal>
+          <Reveal delay={0.1}><div className="h-full rounded-[2.5rem] bg-sun p-10"><p className="text-[13px] font-extrabold uppercase tracking-[0.16em] text-amber-ink">Sứ mệnh</p><p className="mt-4 text-2xl font-bold leading-snug">Kết nối cộng đồng, chia sẻ yêu thương, chung tay xây dựng một cộng đồng nhân ái, bền vững, nơi mỗi con người có cơ hội tỏa sáng và sống hạnh phúc.</p></div></Reveal>
         </div>
       </section>
 
@@ -81,7 +81,7 @@ export default function About() {
               <Reveal key={v.en} delay={i * 0.06}>
                 <div className="group h-full rounded-[2rem] bg-white p-7 shadow-lg shadow-forest/5 ring-1 ring-line transition hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-viet/15">
                   <span className="text-6xl font-black text-viet/15 transition group-hover:text-sun">0{i + 1}</span>
-                  <p className="mt-2 text-xs font-extrabold uppercase tracking-[0.25em] text-amber-ink">{v.en}</p>
+                  <p className="mt-2 text-[13px] font-extrabold uppercase tracking-[0.16em] text-amber-ink">{v.en}</p>
                   <h3 className="text-2xl font-extrabold">{v.vi}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-ink-soft">{v.text}</p>
                 </div>

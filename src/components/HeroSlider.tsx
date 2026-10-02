@@ -89,11 +89,11 @@ export default function HeroSlider() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em]"
+              className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[13px] font-bold uppercase tracking-[0.16em]"
             >
               <span className="size-2 animate-pulse rounded-full bg-aura" /> {s.eyebrow}
             </motion.span>
-            <h1 className="mt-6 text-[clamp(2.6rem,8vw,6.5rem)] font-extrabold leading-[0.98] tracking-tight">
+            <h1 className="mt-6 text-[clamp(2.6rem,8vw,6.5rem)] font-extrabold leading-[1.06] tracking-tight">
               {words.map((w, k) => (
                 <span key={k} className="mr-[0.25em] inline-block overflow-hidden align-bottom">
                   <motion.span

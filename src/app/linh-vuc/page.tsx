@@ -11,8 +11,8 @@ export const revalidate = 300;
 
 const tone: Record<string, string> = {
   sun: "from-sun to-[#ffb347] text-ink",
-  rose: "from-[#ff8aa1] to-[#e0527a] text-white",
-  leaf: "from-leaf to-viet text-white",
+  rose: "from-[#e24d77] to-[#a8284f] text-white",
+  leaf: "from-[#2f9a3c] to-viet-dam text-white",
   amber: "from-amber to-[#7a4505] text-white",
 };
 

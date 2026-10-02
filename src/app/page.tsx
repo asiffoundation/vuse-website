@@ -21,15 +21,15 @@ export const revalidate = 300;
 const audiences = [
   { t: "Trẻ em, học sinh, sinh viên", d: "Tri thức, học bổng & kỹ năng", emoji: "🎒", tone: "from-sun to-[#ffb347] text-ink" },
   { t: "Người cao tuổi", d: "Chăm sóc đời sống & tinh thần", emoji: "🌻", tone: "from-amber to-[#d98b1f] text-white" },
-  { t: "Người khuyết tật", d: "Hòa nhập & tự lập", emoji: "🤝", tone: "from-leaf to-viet text-white" },
+  { t: "Người khuyết tật", d: "Hòa nhập & tự lập", emoji: "🤝", tone: "from-[#2f9a3c] to-viet-dam text-white" },
   { t: "Người có hoàn cảnh khó khăn", d: "Sinh kế & cơ hội mới", emoji: "🌱", tone: "from-viet to-forest text-white" },
 ];
 
 const bento = ["md:col-span-3 md:row-span-2", "md:col-span-3", "md:col-span-3", "md:col-span-6"];
 const progTone: Record<string, string> = {
   sun: "from-sun to-[#ffb347] text-ink",
-  rose: "from-[#ff8aa1] to-[#e0527a] text-white",
-  leaf: "from-leaf to-viet text-white",
+  rose: "from-[#e24d77] to-[#a8284f] text-white",
+  leaf: "from-[#2f9a3c] to-viet-dam text-white",
   amber: "from-amber to-[#7a4505] text-white",
 };
 
@@ -74,13 +74,13 @@ export default async function Home() {
                   <Clover className="size-[62%] animate-float text-sun drop-shadow-[0_20px_40px_rgba(0,0,0,.35)]" />
                 </div>
               </Art>
-              <div className="glass absolute -bottom-6 -left-4 rounded-2xl bg-forest-deep/80 p-5 text-white shadow-xl md:-left-10">
+              <div className="absolute -bottom-6 -left-4 rounded-2xl bg-forest-deep p-5 text-white shadow-xl ring-1 ring-white/10 md:-left-10">
                 <p className="text-4xl font-black text-sun"><Counter to={100} suffix="%" /></p>
-                <p className="text-xs font-semibold text-white/70">Minh bạch & liêm chính</p>
+                <p className="text-sm font-semibold text-white/85">Minh bạch & liêm chính</p>
               </div>
               <div className="absolute -right-3 -top-5 rounded-2xl bg-white p-4 shadow-xl md:-right-8">
                 <p className="text-3xl font-black text-viet"><Counter to={4} /></p>
-                <p className="text-xs font-semibold text-ink-soft">Nhóm đối tượng</p>
+                <p className="text-sm font-semibold text-ink-soft">Nhóm đối tượng</p>
               </div>
             </TiltCard>
           </Reveal>
@@ -100,7 +100,7 @@ export default async function Home() {
                     <span className="text-6xl transition-transform duration-500 group-hover:scale-125 group-hover:-rotate-6">{a.emoji}</span>
                     <div>
                       <h3 className="text-2xl font-extrabold leading-tight">{a.t}</h3>
-                      <p className="mt-1 text-sm opacity-80">{a.d}</p>
+                      <p className="mt-1.5 text-base font-medium opacity-90">{a.d}</p>
                     </div>
                   </div>
                 </TiltCard>
@@ -125,7 +125,7 @@ export default async function Home() {
                   <span className="grid size-14 place-items-center rounded-2xl bg-white/25 backdrop-blur"><Icon name={g.icon} className="size-7" /></span>
                   <div className="relative">
                     <h3 className="text-2xl font-extrabold md:text-3xl">{g.title}</h3>
-                    <ul className="mt-3 space-y-1 text-sm opacity-85">
+                    <ul className="mt-3 space-y-1.5 text-[15px] font-medium leading-snug opacity-95 md:text-base">
                       {g.items.slice(0, 2).map((t) => <li key={t}>• {t}</li>)}
                     </ul>
                   </div>
@@ -179,11 +179,11 @@ export default async function Home() {
             {values.map((v, i) => (
               <div key={v.en} tabIndex={0} className="group relative flex-1 overflow-hidden rounded-[2rem] bg-forest p-6 text-white outline-none transition-all duration-700 hover:flex-[3] focus-visible:flex-[3] md:min-w-0" style={{ background: ["#0b7b48", "#0a3d27", "#b86d09", "#08603a", "#062218"][i] }}>
                 <Clover className="absolute -bottom-10 -right-10 size-52 text-white/10 transition-transform duration-700 group-hover:rotate-90" />
-                <span className="text-5xl font-black text-white/20 md:text-7xl">0{i + 1}</span>
-                <div className="absolute inset-x-6 bottom-6">
-                  <p className="text-xs font-bold uppercase tracking-[0.25em] text-sun">{v.en}</p>
+                <span className="block text-5xl font-black leading-none text-white/20 md:text-7xl">0{i + 1}</span>
+                <div className="relative mt-4 md:absolute md:inset-x-6 md:bottom-6 md:mt-0">
+                  <p className="text-[13px] font-bold uppercase tracking-[0.16em] text-sun">{v.en}</p>
                   <h3 className="mt-1 text-3xl font-extrabold">{v.vi}</h3>
-                  <p className="mt-3 max-h-0 overflow-hidden text-sm leading-relaxed text-white/80 opacity-0 transition-all duration-700 group-hover:max-h-40 group-hover:opacity-100 group-focus-visible:max-h-40 group-focus-visible:opacity-100 max-md:max-h-40 max-md:opacity-100">{v.text}</p>
+                  <p className="mt-3 max-h-0 overflow-hidden text-base leading-relaxed text-white/90 opacity-0 transition-all duration-700 group-hover:max-h-40 group-hover:opacity-100 group-focus-visible:max-h-40 group-focus-visible:opacity-100 max-md:max-h-40 max-md:opacity-100">{v.text}</p>
                 </div>
               </div>
             ))}
@@ -197,7 +197,7 @@ export default async function Home() {
           {stats.map((s) => (
             <Reveal key={s.label} className="text-center">
               <p className="text-5xl font-black text-sun md:text-6xl"><Counter to={s.value} suffix={s.suffix} /></p>
-              <p className="mt-1 text-sm font-semibold text-white/80">{s.label}</p>
+              <p className="mt-1 text-base font-semibold text-white/90">{s.label}</p>
             </Reveal>
           ))}
         </div>
@@ -205,7 +205,7 @@ export default async function Home() {
 
       {/* Đối tác */}
       <section className="py-20">
-        <p className="mb-8 text-center text-xs font-extrabold uppercase tracking-[0.28em] text-amber-ink">Đối tác đồng hành</p>
+        <p className="mb-8 text-center text-[13px] font-extrabold uppercase tracking-[0.16em] text-amber-ink">Đối tác đồng hành</p>
         <Marquee>
           {partners.map((p) => (
             <div key={p.id} className="grid h-20 min-w-48 place-items-center rounded-2xl bg-white px-8 text-lg font-extrabold text-ink-soft shadow-sm ring-1 ring-line">

@@ -31,7 +31,7 @@ export const legalNav = [
 ];
 
 export const nav = [
-  { href: "/", label: "Home" },
+  { href: "/", label: "Trang chủ" },
   { href: "/ve-chung-toi", label: "Về chúng tôi" },
   { href: "/linh-vuc", label: "Lĩnh vực" },
   { href: "/du-an", label: "Dự án" },

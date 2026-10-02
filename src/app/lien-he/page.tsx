@@ -26,7 +26,7 @@ export default function Contact() {
             <div key={it.label} className="flex items-center gap-4 rounded-2xl bg-white p-4 ring-1 ring-line transition hover:-translate-y-0.5 hover:shadow-lg">
               <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-mist text-viet"><it.icon className="size-5" /></span>
               <div className="min-w-0">
-                <p className="text-xs font-bold uppercase tracking-wider text-ink-soft">{it.label}</p>
+                <p className="text-[13px] font-bold uppercase tracking-wider text-ink-soft">{it.label}</p>
                 {it.href ? <a href={it.href} className="break-words font-bold hover:text-viet" target={it.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">{it.value}</a> : <p className="font-bold">{it.value}</p>}
               </div>
             </div>

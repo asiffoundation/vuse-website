@@ -14,10 +14,10 @@ export default function PostCard({ p }: { p: Post }) {
         ) : (
           <Art seed={p.slug} className="size-full transition-transform duration-700 group-hover:scale-110" />
         )}
-        {p.category && <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider text-viet">{p.category}</span>}
+        {p.category && <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-extrabold uppercase tracking-wider text-viet">{p.category}</span>}
       </div>
       <div className="flex flex-1 flex-col p-6">
-        <time className="text-xs font-semibold text-ink-soft">{fmtDate(p.published_at)}</time>
+        <time className="text-sm font-semibold text-ink-soft">{fmtDate(p.published_at)}</time>
         <h3 className="mt-2 text-xl font-extrabold leading-snug text-ink transition-colors group-hover:text-viet">{p.title}</h3>
         <p className="mt-2 line-clamp-3 text-sm text-ink-soft">{p.excerpt}</p>
         <span className="mt-auto pt-5 text-sm font-bold text-viet">Đọc tiếp →</span>
