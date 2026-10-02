@@ -1,6 +1,13 @@
-import Image, { type ImageProps } from "next/image";
+"use client";
 
-// next/image dùng chung: tự tắt tối ưu cho SVG (ảnh tạm) để không cần dangerouslyAllowSVG.
-export default function Photo({ src, alt, className = "", ...rest }: Omit<ImageProps, "src"> & { src: string }) {
-  return <Image src={src} alt={alt} unoptimized={src.endsWith(".svg")} className={`object-cover ${className}`} {...rest} />;
+import Image, { type ImageProps } from "next/image";
+import { useState } from "react";
+import { fallbackFor } from "@/lib/media";
+
+// next/image dùng chung. Ảnh SVG (ảnh tạm) không qua tối ưu; ảnh từ xa lỗi thì tự chuyển sang `fallback`.
+export default function Photo({ src, fallback, alt, className = "", ...rest }: Omit<ImageProps, "src"> & { src: string; fallback?: string }) {
+  const [failed, setFailed] = useState(false);
+  const fb = fallback ?? fallbackFor(src);
+  const s = failed && fb ? fb : src;
+  return <Image src={s} alt={alt} unoptimized={s.endsWith(".svg")} onError={() => setFailed(true)} className={`object-cover ${className}`} {...rest} />;
 }

@@ -1,58 +1,82 @@
 /**
  * TẤT CẢ ẢNH CỐ ĐỊNH CỦA WEBSITE — sửa ở đây khi có ảnh thật.
  *
- * Hiện là ẢNH TẠM (SVG màu thương hiệu) trong `public/images/site/`.
- * Thay ảnh thật: chép file vào `public/images/site/` (vd. `hero-1.jpg`, nên ≥ 1920px
- * cho ảnh ngang, ≥ 1200px cho ảnh dọc) rồi đổi đuôi `.svg` → `.jpg` ở dòng tương ứng
- * và viết lại `alt` mô tả đúng nội dung ảnh.
+ * Hiện dùng ẢNH MINH HOẠ MẪU từ Unsplash (giấy phép Unsplash: dùng miễn phí, kể cả thương mại).
+ * Đây KHÔNG phải ảnh hoạt động của Việt Úc — thay bằng ảnh thật trước khi công bố chính thức.
+ * Nếu ảnh Unsplash không tải được, website tự dùng ảnh tạm SVG cùng tên trong `public/images/site/`.
+ *
+ * Thay ảnh thật: chép file vào `public/images/site/` (vd. `hero-1.jpg`; ảnh ngang ≥ 1920px,
+ * ảnh dọc ≥ 1200px), rồi ở dòng tương ứng XOÁ mã Unsplash và đổi đuôi `.svg` → `.jpg`:
+ *   m("hero-1.svg", "...", "AEaTUnvneik")   →   m("hero-1.jpg", "Mô tả đúng ảnh thật")
  *
  * Ảnh dự án / tin tức không nằm ở đây: tải lên trong /admin (ảnh bìa).
  */
-export type Media = { src: string; alt: string };
+export type Media = { src: string; alt: string; fallback?: string };
 
-const m = (file: string, alt: string): Media => ({ src: `/images/site/${file}`, alt });
+const fallbacks: Record<string, string> = {};
+
+/** file = ảnh tạm trong public/images/site; unsplash = mã ảnh (11 ký tự cuối của link unsplash.com/photos/...) */
+const m = (file: string, alt: string, unsplash?: string): Media => {
+  const local = `/images/site/${file}`;
+  const src = unsplash ? `https://unsplash.com/photos/${unsplash}/download` : local;
+  fallbacks[src] = local;
+  return { src, alt, fallback: local };
+};
 
 export const media = {
   // 5 slide banner trang chủ — ảnh ngang 16:9
   hero: [
-    m("hero-1.svg", "Tình nguyện viên Việt Úc cùng cộng đồng"),
-    m("hero-2.svg", "Các em học sinh trong chương trình học bổng"),
-    m("hero-3.svg", "Chăm sóc người cao tuổi"),
-    m("hero-4.svg", "Hoạt động hòa nhập cho người khuyết tật"),
-    m("hero-5.svg", "Hỗ trợ sinh kế cho gia đình khó khăn"),
+    m("hero-1.svg", "Các em nhỏ vùng cao Gia Lai cười tươi", "AEaTUnvneik"),
+    m("hero-2.svg", "Trẻ em vui chơi trên cánh đồng", "0DPyb8t_KfI"),
+    m("hero-3.svg", "Cụ bà đội nón lá mỉm cười", "P-NKvMEzA2A"),
+    m("hero-4.svg", "Người phụ nữ ngồi xe lăn trong công viên", "UlG-z-Kz_AI"),
+    m("hero-5.svg", "Người nông dân đội nón lá trên đồng lúa", "4trSs-cdM6c"),
   ],
   // 4 nhóm đối tượng — ảnh dọc 3:4
   audience: [
-    m("audience-1.svg", "Trẻ em, học sinh, sinh viên"),
-    m("audience-2.svg", "Người cao tuổi"),
-    m("audience-3.svg", "Người khuyết tật"),
-    m("audience-4.svg", "Người có hoàn cảnh khó khăn"),
+    m("audience-1.svg", "Trẻ em, học sinh, sinh viên", "cqG5fcZQHQg"),
+    m("audience-2.svg", "Người cao tuổi", "P-NKvMEzA2A"),
+    m("audience-3.svg", "Người khuyết tật", "GIJWGUXKEzY"),
+    m("audience-4.svg", "Người có hoàn cảnh khó khăn", "DdnLKP_Yc2Y"),
   ],
   // 4 lĩnh vực (theo thứ tự lĩnh vực) — ảnh ngang 16:10
   program: [
-    m("program-1.svg", "Lớp kỹ năng cho học sinh"),
-    m("program-2.svg", "Khám sức khỏe cộng đồng"),
-    m("program-3.svg", "Lớp đào tạo nghề"),
-    m("program-4.svg", "Đồng hành cùng cộng đồng yếu thế"),
+    m("program-1.svg", "Lớp học của các em nhỏ", "cqG5fcZQHQg"),
+    m("program-2.svg", "Bác sĩ khám sức khỏe cho trẻ", "QY8-IuUV3wk"),
+    m("program-3.svg", "Học nghề may", "S49g-JZK_7g"),
+    m("program-4.svg", "Hai bàn tay nắm lấy nhau", "mwGrAl1X514"),
   ],
   // Ảnh bìa dự phòng cho dự án / tin tức chưa có ảnh trong /admin
-  project: [m("project-1.svg", ""), m("project-2.svg", ""), m("project-3.svg", "")],
-  post: [m("post-1.svg", ""), m("post-2.svg", ""), m("post-3.svg", "")],
-  // Khoảnh khắc — dải ảnh chạy ở trang chủ (vuông)
-  moments: Array.from({ length: 8 }, (_, i) => m(`moment-${i + 1}.svg`, `Khoảnh khắc hoạt động ${i + 1}`)),
+  project: [m("project-1.svg", "", "cqG5fcZQHQg"), m("project-2.svg", "", "GIJWGUXKEzY"), m("project-3.svg", "", "QY8-IuUV3wk")],
+  post: [m("post-1.svg", "", "HQlVeK0wb_w"), m("post-2.svg", "", "FQEYqBdXj2g"), m("post-3.svg", "", "0DPyb8t_KfI")],
+  // Khoảnh khắc — dải ảnh chạy ở trang chủ
+  moments: [
+    m("moment-1.svg", "", "AEaTUnvneik"),
+    m("moment-2.svg", "", "cJfHT9XjOoU"),
+    m("moment-3.svg", "", "ibZ2QiKkEsg"),
+    m("moment-4.svg", "", "8wiECX4Cga4"),
+    m("moment-5.svg", "", "FQEYqBdXj2g"),
+    m("moment-6.svg", "", "dliEVD2QhKQ"),
+    m("moment-7.svg", "", "rXqfl7MKEJ4"),
+    m("moment-8.svg", "", "HQlVeK0wb_w"),
+  ],
+  // Chân dung nhân vật: CỐ Ý để ảnh tạm — không gán ảnh người lạ cho một câu chuyện có tên
   story: m("story.svg", "Chân dung nhân vật câu chuyện"),
-  storyWide: m("story-wide.svg", "Một ngày cùng Việt Úc"),
-  cta: m("cta.svg", "Cộng đồng Việt Úc"),
-  about: [m("about-1.svg", "Đội ngũ Việt Úc"), m("about-2.svg", "Hoạt động của Việt Úc")],
+  storyWide: m("story-wide.svg", "Những bàn tay nắm lấy nhau", "bZQJLStVYWs"),
+  cta: m("cta.svg", "Những bàn tay cùng chung sức", "Db-stA8meJY"),
+  about: [m("about-1.svg", "Cụ bà đội nón lá", "P-NKvMEzA2A"), m("about-2.svg", "Trẻ em vui chơi", "0DPyb8t_KfI")],
   // Ảnh đầu trang con
   page: {
-    about: m("page-about.svg", "Đội ngũ Việt Úc"),
-    programs: m("page-programs.svg", "Hoạt động theo lĩnh vực"),
-    projects: m("page-projects.svg", "Các dự án của Việt Úc"),
-    news: m("page-news.svg", "Tin tức Việt Úc"),
-    join: m("page-join.svg", "Tình nguyện viên Việt Úc"),
-    contact: m("page-contact.svg", "Văn phòng Việt Úc"),
+    about: m("page-about.svg", "Những bàn tay cùng chung sức", "Db-stA8meJY"),
+    programs: m("page-programs.svg", "Người dân trên đồng lúa", "DdnLKP_Yc2Y"),
+    projects: m("page-projects.svg", "Các em nhỏ cười tươi", "AEaTUnvneik"),
+    news: m("page-news.svg", "Khoảnh khắc đời thường", "HQlVeK0wb_w"),
+    join: m("page-join.svg", "Những bàn tay đoàn kết", "FQEYqBdXj2g"),
+    contact: m("page-contact.svg", "Cánh đồng lúa Việt Nam", "4trSs-cdM6c"),
   },
 };
 
 export const pick = (list: Media[], i: number) => list[((i % list.length) + list.length) % list.length];
+
+/** Ảnh tạm tương ứng với một ảnh từ xa (dùng khi ảnh từ xa lỗi). */
+export const fallbackFor = (src: string) => fallbacks[src];

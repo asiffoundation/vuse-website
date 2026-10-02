@@ -14,9 +14,11 @@ Cột "Sửa ở đâu": **/admin** = trang quản trị (không cần code); **
 | [ ] | **Mục tiêu gây quỹ & số đã quyên góp** từng dự án — chỉ nhập khi có số thật; để trống thì thanh tiến độ tự ẩn | Số mẫu 136/200tr, 58/150tr, 214/300tr (chỉ hiện khi chưa nối Supabase) | /admin → Dự án (sau khi chạy migration `0004`) |
 | [ ] | **Tin tức** | Mẫu, trong đó có bài "Trao 50 suất học bổng" là **sự kiện chưa xảy ra** | /admin → Tin tức (sửa hoặc xoá) |
 
-## 2. Ảnh — đang là ảnh tạm (mờ, màu thương hiệu)
+## 2. Ảnh — đang là ảnh minh hoạ mẫu từ Unsplash
 
-Chép ảnh thật vào `public/images/site/` với đúng tên, rồi đổi đuôi `.svg` → `.jpg` trong `src/lib/media.ts` (file đó ghi rõ từng ảnh dùng ở đâu). Ảnh có người: cần sự đồng ý của người trong ảnh, đặc biệt với trẻ em.
+Hiện website dùng **ảnh minh hoạ miễn phí từ Unsplash** (giấy phép Unsplash cho phép dùng thương mại). Đây **không phải ảnh hoạt động của Việt Úc**, chỉ để xem bố cục — cần thay bằng ảnh thật trước khi công bố. Ảnh chân dung nhân vật câu chuyện cố ý để trống (không gán ảnh người lạ cho câu chuyện có tên). Nếu ảnh Unsplash không tải được, website tự hiện ảnh tạm màu thương hiệu.
+
+Chép ảnh thật vào `public/images/site/` với đúng tên, rồi trong `src/lib/media.ts` xoá mã Unsplash ở dòng đó và đổi đuôi `.svg` → `.jpg` (file ghi rõ từng ảnh dùng ở đâu, kèm ví dụ). Ảnh có người: cần sự đồng ý của người trong ảnh, đặc biệt với trẻ em.
 
 | | Ảnh | Số lượng | Khổ gợi ý | Tên file |
 |---|---|---|---|---|

@@ -41,7 +41,7 @@ Chưa có `.env.local` → site dùng **dữ liệu mẫu** (`src/lib/sample-dat
 - Màu: theo bộ nhận diện v1.0 — token ở `src/app/globals.css` (`@theme`).
 - Hiệu ứng: `motion` (reveal, tilt 3D, slider), aurora/grain thuần CSS, tôn trọng `prefers-reduced-motion`.
 - Hướng "Câu chuyện thật": ảnh lớn, nền sáng, chữ ≥ 15px. Hiệu ứng: banner ảnh Ken Burns, chữ sáng dần theo cuộn, ảnh mở rộng khi cuộn, thẻ lĩnh vực xếp chồng (sticky), dải ảnh chạy, thanh tiến độ gây quỹ, nút chia sẻ Facebook/Zalo.
-- **Ảnh cố định** (banner, nhóm đối tượng, lĩnh vực, khoảnh khắc…) khai báo ở `src/lib/media.ts`, file ở `public/images/site/`. Hiện là **ảnh tạm** (SVG màu thương hiệu) — thay bằng ảnh thật cùng tên rồi đổi đuôi trong `media.ts`.
+- **Ảnh cố định** (banner, nhóm đối tượng, lĩnh vực, khoảnh khắc…) khai báo ở `src/lib/media.ts`, file ở `public/images/site/`. Hiện là **ảnh minh hoạ mẫu từ Unsplash** (lỗi thì tự dùng SVG màu thương hiệu) — thay bằng ảnh thật cùng tên, xoá mã Unsplash và đổi đuôi trong `media.ts`.
 - Ảnh dự án / tin tức: tải lên ở `/admin` (Supabase Storage bucket `media`); chưa có thì dùng ảnh tạm.
 
 ## Cấu trúc thư mục
