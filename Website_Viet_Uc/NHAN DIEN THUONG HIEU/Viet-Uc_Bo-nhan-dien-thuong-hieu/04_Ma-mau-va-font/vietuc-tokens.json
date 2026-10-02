@@ -1,0 +1,79 @@
+{
+  "name": "Việt Úc",
+  "version": 1,
+  "color": {
+    "themes": [{"id": "light", "name": "Sáng"}, {"id": "dark", "name": "Tối"}],
+    "tokens": [
+      {"name": "xanh-viet", "value": {"light": "#0b7b48", "dark": "#4cc48a"}, "usage": "Màu chủ đạo, lấy từ chữ \"Việt Úc\" trong logo. Nút chính, tiêu đề nhấn, liên kết. Chữ xanh-viet đọc được trên nen và nen-noi (≥4.9:1 ở cả hai theme)."},
+      {"name": "xanh-viet-dam", "value": {"light": "#08603a", "dark": "#6bd3a0"}, "usage": "Trạng thái hover/nhấn của nút chính và liên kết."},
+      {"name": "on-xanh-viet", "value": {"light": "#ffffff", "dark": "#06210f"}, "usage": "Chữ và icon đặt trên nền xanh-viet (5.3:1 sáng, 7.7:1 tối)."},
+      {"name": "xanh-la", "value": "#68cf30", "usage": "Xanh lá non của viền cỏ bốn lá. Chỉ dùng cho mảng trang trí, họa tiết, biểu đồ; KHÔNG dùng làm màu chữ trên nền sáng (1.9:1). Trên nen-dam đạt 6.2:1."},
+      {"name": "xanh-la-nhat", "value": {"light": "#e3f1e6", "dark": "#173526"}, "usage": "Nền nhạt cho nhãn, khối trích dẫn, vùng thông tin hỗ trợ. Chữ muc hoặc xanh-viet đặt trên đó."},
+      {"name": "ho-phach", "value": {"light": "#b86d09", "dark": "#e9a23b"}, "usage": "Hổ phách của dòng SOCIAL ENTERPRISE và lõi cỏ bốn lá. Mảng màu, đường nhấn, chữ lớn từ 24px trở lên (4.0:1 trên trắng)."},
+      {"name": "ho-phach-chu", "value": {"light": "#9a5a06", "dark": "#e9a23b"}, "usage": "Phiên bản hổ phách cho chữ cỡ nhỏ: nhãn chuyên mục, eyebrow, chú thích trên nen/nen-noi (≥5.1:1)."},
+      {"name": "vang-nang", "value": "#ffd416", "usage": "Vàng nắng của nét cong trong chữ V. Điểm nhấn hy vọng: một chi tiết nhỏ mỗi bố cục, nút kêu gọi trên nen-dam. Chữ trên nền vàng luôn dùng on-vang."},
+      {"name": "on-vang", "value": "#13261c", "usage": "Chữ đặt trên vang-nang (11:1)."},
+      {"name": "hao-quang", "value": "#89ff59", "usage": "Xanh dạ quang của vòng hào quang quanh logo. Chỉ xuất hiện trong logo bản vòng sáng và hiệu ứng phát sáng trên màn hình tối. Không dùng cho chữ, không in ấn."},
+      {"name": "nen", "value": {"light": "#f6f8f3", "dark": "#0e1a14"}, "usage": "Nền trang. Hơi ngả xanh để hòa với màu thương hiệu."},
+      {"name": "nen-noi", "value": {"light": "#ffffff", "dark": "#15251c"}, "usage": "Nền thẻ, hộp thoại, vùng nội dung nổi trên nen."},
+      {"name": "nen-dam", "value": {"light": "#0a3d27", "dark": "#082a1b"}, "usage": "Nền xanh rừng sâu cho banner, chân trang, ảnh bìa mạng xã hội. Chữ on-nen-dam, nhấn vang-nang hoặc xanh-la."},
+      {"name": "on-nen-dam", "value": {"light": "#ffffff", "dark": "#eaf2ec"}, "usage": "Chữ trên nen-dam (≥10.7:1)."},
+      {"name": "muc", "value": {"light": "#13261c", "dark": "#eaf2ec"}, "usage": "Màu chữ chính trên nen, nen-noi, xanh-la-nhat."},
+      {"name": "muc-phu", "value": {"light": "#4d6357", "dark": "#a6bbae"}, "usage": "Chữ phụ, chú thích, ngày tháng trên nen và nen-noi (≥6:1 sáng, ≥7.8:1 tối)."},
+      {"name": "vien", "value": {"light": "#d5dfd6", "dark": "#2a3d32"}, "usage": "Đường kẻ mảnh trang trí, phân cách nội dung. Không dùng làm viền ô nhập liệu."},
+      {"name": "vien-dam", "value": {"light": "#6f8578", "dark": "#5e7868"}, "usage": "Viền ô nhập liệu, nút viền, biểu tượng mang nghĩa (≥3:1 trên nen và nen-noi)."},
+      {"name": "vong-focus", "value": {"light": "#0b7b48", "dark": "#4cc48a"}, "usage": "Vòng focus bàn phím: viền liền 2px, cách 2px, trên mọi thành phần tương tác."},
+      {"name": "loi", "value": {"light": "#b3261e", "dark": "#ff8a80"}, "usage": "Báo lỗi biểu mẫu. Luôn đi kèm chữ hoặc icon, không chỉ dựa vào màu."},
+      {"name": "thong-tin", "value": {"light": "#1f5fa8", "dark": "#8ab8f0"}, "usage": "Thông tin trung tính, liên kết ngoài. Khác xanh-viet về độ sáng và sắc độ để người mù màu phân biệt được."},
+      {"name": "in-xanh-viet", "value": "#0b7b48", "usage": "Màu in ấn (không đổi theo theme). Pantone gần nhất: 7726 C. CMYK tham khảo 90 / 20 / 85 / 15."},
+      {"name": "in-ho-phach", "value": "#b86d09", "usage": "Màu in ấn (không đổi theo theme). Pantone gần nhất: 1395 C. CMYK tham khảo 15 / 60 / 100 / 15."},
+      {"name": "in-vang-nang", "value": "#ffd416", "usage": "Màu in ấn (không đổi theo theme). Pantone gần nhất: 115 C. CMYK tham khảo 0 / 15 / 95 / 0."},
+      {"name": "in-xanh-la", "value": "#68cf30", "usage": "Màu in ấn (không đổi theo theme). Pantone gần nhất: 368 C. Chỉ cho mảng trang trí."},
+      {"name": "in-giay", "value": "#ffffff", "usage": "Giấy trắng trong mô phỏng ấn phẩm (không đổi theo theme)."},
+      {"name": "in-muc", "value": "#13261c", "usage": "Chữ chính trên in-giay (không đổi theo theme)."},
+      {"name": "in-muc-phu", "value": "#4d6357", "usage": "Chữ phụ trên in-giay (không đổi theo theme)."},
+      {"name": "in-nen-dam", "value": "#0a3d27", "usage": "Nền xanh rừng trên ấn phẩm (mặt sau danh thiếp, dây đeo thẻ). Không đổi theo theme."}
+    ]
+  },
+  "type": {
+    "families": {
+      "display": "\"Playfair Display\", \"Noto Serif\", Georgia, serif",
+      "sans": "\"Be Vietnam Pro\", \"Segoe UI\", system-ui, sans-serif"
+    },
+    "groups": [
+      {"name": "Tiêu đề", "family": "display", "styles": [
+        {"name": "display", "fontSize": "56px", "lineHeight": "60px", "fontWeight": 600, "letterSpacing": "-0.01em", "sample": "Mỗi người đều xứng đáng được nâng đỡ", "usage": "Tiêu đề lớn trên banner, ảnh bìa, trang đầu báo cáo. Tối đa một lần mỗi trang."},
+        {"name": "h1", "fontSize": "40px", "lineHeight": "46px", "fontWeight": 600, "sample": "Báo cáo hoạt động cộng đồng 2026", "usage": "Tiêu đề trang, tiêu đề bài viết."},
+        {"name": "h2", "fontSize": "28px", "lineHeight": "34px", "fontWeight": 600, "sample": "Chương trình hỗ trợ người khuyết tật", "usage": "Tiêu đề mục."},
+        {"name": "quote", "fontSize": "24px", "lineHeight": "34px", "fontWeight": 400, "fontStyle": "italic", "sample": "Tôi được lắng nghe, không phải được thương hại.", "usage": "Trích dẫn lời người thụ hưởng (đã có sự đồng ý)."}
+      ]},
+      {"name": "Nội dung", "family": "sans", "styles": [
+        {"name": "h3", "fontSize": "20px", "lineHeight": "28px", "fontWeight": 600, "sample": "Tư vấn tâm lý miễn phí", "usage": "Tiêu đề thẻ, tiêu đề nhóm nhỏ."},
+        {"name": "body-lg", "fontSize": "18px", "lineHeight": "30px", "fontWeight": 400, "sample": "Chúng tôi đồng hành cùng người cao tuổi neo đơn tại địa phương.", "usage": "Đoạn mở đầu, nội dung dành cho người lớn tuổi hoặc thị lực kém."},
+        {"name": "body", "fontSize": "16px", "lineHeight": "26px", "fontWeight": 400, "sample": "Bạn có thể đăng ký nhận hỗ trợ qua đường dây nóng hoặc tại văn phòng.", "usage": "Chữ nội dung mặc định. Không nhỏ hơn 16px trên màn hình."},
+        {"name": "small", "fontSize": "14px", "lineHeight": "20px", "fontWeight": 400, "sample": "Cập nhật ngày 01/10/2026", "usage": "Chú thích, ngày tháng, thông tin phụ."},
+        {"name": "label", "fontSize": "12px", "lineHeight": "16px", "fontWeight": 600, "letterSpacing": "0.12em", "sample": "SOCIAL ENTERPRISE", "usage": "Nhãn viết hoa, eyebrow, tên chuyên mục. Mượn tinh thần dòng SOCIAL ENTERPRISE trong logo. Luôn viết hoa, giãn chữ."},
+        {"name": "button", "fontSize": "16px", "lineHeight": "20px", "fontWeight": 600, "sample": "Đăng ký hỗ trợ", "usage": "Chữ trên nút."}
+      ]}
+    ]
+  },
+  "spacing": {"tokens": [
+    {"name": "space-1", "value": "4px", "usage": "Khoảng cách icon với chữ."},
+    {"name": "space-2", "value": "8px", "usage": "Khoảng trong nhãn, giữa các nhãn."},
+    {"name": "space-3", "value": "12px", "usage": "Khoảng dọc trong nút."},
+    {"name": "space-4", "value": "16px", "usage": "Lề tối thiểu trên điện thoại; khoảng giữa các phần tử trong thẻ."},
+    {"name": "space-6", "value": "24px", "usage": "Đệm trong thẻ, khoảng giữa các thẻ."},
+    {"name": "space-8", "value": "32px", "usage": "Khoảng giữa các khối nội dung."},
+    {"name": "space-12", "value": "48px", "usage": "Khoảng giữa các mục lớn."},
+    {"name": "space-16", "value": "64px", "usage": "Đệm trên dưới của banner, khu vực hero."}
+  ]},
+  "radius": {"tokens": [
+    {"name": "radius-sm", "value": "6px", "usage": "Ô nhập liệu, nhãn nhỏ."},
+    {"name": "radius-md", "value": "12px", "usage": "Nút, thẻ nhỏ."},
+    {"name": "radius-lg", "value": "24px", "usage": "Thẻ nội dung, ảnh, khối banner. Gợi đường cong mềm của những trái tim trong cỏ bốn lá."},
+    {"name": "radius-pill", "value": "999px", "usage": "Nhãn dạng viên thuốc, nút đường dây nóng."}
+  ]},
+  "shadow": {"tokens": [
+    {"name": "shadow-noi", "value": {"light": "0 1px 2px rgba(10,61,39,0.08), 0 8px 24px rgba(10,61,39,0.08)", "dark": "0 1px 2px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.35)"}, "usage": "Bóng duy nhất của hệ thống: thẻ nổi, hộp thoại. Không chồng nhiều lớp bóng."}
+  ]}
+}

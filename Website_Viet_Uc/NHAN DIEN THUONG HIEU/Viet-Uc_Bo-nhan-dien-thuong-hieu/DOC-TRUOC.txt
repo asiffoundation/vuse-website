@@ -1,0 +1,18 @@
+BỘ NHẬN DIỆN THƯƠNG HIỆU VIỆT ÚC · Phiên bản 1.0 · 10/2026
+
+01_Cam-nang         Cẩm nang nhận diện thương hiệu (PDF, 12 trang): logo, màu, chữ, giọng điệu, hình ảnh, ứng dụng.
+02_Logo/PNG         Logo nền trong suốt:
+                      vietuc-logo-core.png        Logo chính, nền sáng
+                      vietuc-logo-horizontal.png  Logo ngang
+                      vietuc-logo-ring.png        Logo vòng hào quang (chỉ nền tối, kênh số, không in)
+                      vietuc-logo-white.png       Bản trắng cho nền tối
+                      vietuc-logo-green.png       Bản một màu (in lụa, khắc, đóng dấu)
+                      vietuc-clover.png           Biểu tượng cỏ bốn lá
+02_Logo/JPG         Logo trên nền trắng/xanh, ảnh đại diện mạng xã hội 1080 px.
+02_Logo/Bieu-tuong-favicon   Biểu tượng các cỡ cho website, ứng dụng.
+03_Mau-ung-dung     Hình mẫu danh thiếp, tiêu đề thư, bìa đề xuất CSR, thẻ nhân viên, mạng xã hội, web.
+04_Ma-mau-va-font   Bảng mã màu và font; tệp CSS/JSON cho người làm website.
+
+LƯU Ý
+- Logo được tách từ tệp PNG gốc. Để in khổ lớn (băng rôn, biển hiệu), cần bản vector (AI/SVG/PDF) từ người thiết kế logo.
+- Thông tin cá nhân, số điện thoại, mã số trên các mẫu là dữ liệu giả, thay bằng thông tin thật khi sử dụng.

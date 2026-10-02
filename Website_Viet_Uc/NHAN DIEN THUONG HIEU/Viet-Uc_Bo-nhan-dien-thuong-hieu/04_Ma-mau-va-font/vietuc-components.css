@@ -1,0 +1,43 @@
+/* Việt Úc — lớp dùng chung. Mọi màu lấy từ token. */
+body { margin: 0; background: var(--nen); color: var(--muc); font-family: var(--font-sans); }
+.vu-row { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; padding: var(--space-4); }
+.vu-stack { display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-4); }
+.vu-logo-on-dark { display: none; }
+[data-theme="dark"] .vu-logo-on-light { display: none; }
+[data-theme="dark"] .vu-logo-on-dark { display: block; }
+
+/* Nút */
+.vu-btn { display: inline-flex; align-items: center; gap: var(--space-2); font: 600 16px/20px var(--font-sans); padding: var(--space-3) var(--space-6); border-radius: var(--radius-md); border: 2px solid transparent; cursor: pointer; text-decoration: none; }
+.vu-btn:focus-visible { outline: 2px solid var(--vong-focus); outline-offset: 2px; }
+.vu-btn-chinh { background: var(--xanh-viet); color: var(--on-xanh-viet); }
+.vu-btn-chinh:hover { background: var(--xanh-viet-dam); }
+.vu-btn-vien { background: transparent; color: var(--xanh-viet); border-color: var(--vien-dam); }
+.vu-btn-vien:hover { border-color: var(--xanh-viet); }
+.vu-btn-nhan { background: var(--vang-nang); color: var(--on-vang); }
+.vu-btn-hotline { border-radius: var(--radius-pill); }
+
+/* Nhãn */
+.vu-tag { display: inline-flex; align-items: center; gap: var(--space-1); font: 600 12px/16px var(--font-sans); letter-spacing: .08em; text-transform: uppercase; padding: 6px var(--space-3); border-radius: var(--radius-pill); background: var(--xanh-la-nhat); color: var(--xanh-viet); }
+.vu-tag-am { background: transparent; color: var(--ho-phach-chu); box-shadow: inset 0 0 0 1.5px var(--ho-phach); }
+.vu-tag-dam { background: var(--xanh-viet); color: var(--on-xanh-viet); }
+
+/* Eyebrow */
+.vu-eyebrow { font: 600 12px/16px var(--font-sans); letter-spacing: .12em; text-transform: uppercase; color: var(--ho-phach-chu); }
+
+/* Thẻ chương trình */
+.vu-card { background: var(--nen-noi); border-radius: var(--radius-lg); box-shadow: var(--shadow-noi); overflow: hidden; display: flex; flex-direction: column; max-width: 340px; min-width: 0; }
+.vu-card-art { height: 120px; background: var(--nen-dam); position: relative; overflow: hidden; }
+.vu-card-body { padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); }
+.vu-card h3 { margin: 0; font: 600 20px/28px var(--font-sans); color: var(--muc); }
+.vu-card p { margin: 0; font: 400 16px/26px var(--font-sans); color: var(--muc-phu); }
+
+/* Khối đường dây nóng */
+.vu-callout { display: flex; flex-wrap: wrap; gap: var(--space-6); align-items: center; justify-content: space-between; background: var(--nen-dam); color: var(--on-nen-dam); border-radius: var(--radius-lg); padding: var(--space-6) var(--space-8); }
+.vu-callout h3 { margin: 0 0 var(--space-1); font: 600 24px/32px var(--font-display); }
+.vu-callout p { margin: 0; font: 400 16px/24px var(--font-sans); opacity: .92; }
+.vu-callout .vu-num { font: 700 28px/32px var(--font-sans); color: var(--vang-nang); letter-spacing: .02em; font-variant-numeric: tabular-nums; }
+
+/* Ấn phẩm in: màu in-* không đổi theo theme */
+.vu-paper { background: var(--in-giay); color: var(--in-muc); box-shadow: 0 1px 3px rgba(10,61,39,.18), 0 12px 32px rgba(10,61,39,.14); font-family: var(--font-sans); position: relative; overflow: hidden; flex: none; }
+.vu-paper-dark { background: var(--in-nen-dam); color: var(--in-giay); }
+.vu-mock-label { font: 600 11px/14px var(--font-sans); letter-spacing: .12em; text-transform: uppercase; color: var(--muc-phu); }

@@ -1,0 +1,22 @@
+BẢNG MÃ MÀU VIỆT ÚC
+(CMYK và Pantone là giá trị quy đổi tham khảo, cần in thử và chốt với nhà in)
+
+Tên            HEX       RGB            CMYK               Pantone      Dùng cho
+Xanh Việt      #0B7B48   11, 123, 72    90 / 20 / 85 / 15  7726 C       Màu chủ đạo, chữ, nút chính
+Hổ phách       #B86D09   184, 109, 9    15 / 60 / 100 / 15 1395 C       Mảng màu, chữ lớn, nhãn
+Vàng nắng      #FFD416   255, 212, 22   0 / 15 / 95 / 0    115 C        Điểm nhấn (một chi tiết mỗi bố cục)
+Xanh lá non    #68CF30   104, 207, 48   55 / 0 / 95 / 0    368 C        Họa tiết, biểu đồ (không làm chữ)
+Xanh rừng      #0A3D27   10, 61, 39     90 / 45 / 85 / 55  3435 C       Nền banner, bìa, mặt sau danh thiếp
+Hào quang      #89FF59   137, 255, 89   (không in)         802 C        Chỉ trong logo vòng sáng, màn hình
+
+Trung tính
+Mực            #13261C   Chữ chính
+Mực phụ        #4D6357   Chữ phụ, chú thích
+Viền           #D5DFD6   Đường kẻ mảnh
+Nền            #F6F8F3   Nền trang
+Nền nhạt       #E3F1E6   Nhãn, khối trích dẫn
+Hổ phách chữ   #9A5A06   Chữ hổ phách cỡ nhỏ
+
+FONT (miễn phí, giấy phép SIL Open Font License, tải tại fonts.google.com)
+Playfair Display   Tiêu đề, trích dẫn        Thay thế trong Office: Georgia
+Be Vietnam Pro     Nội dung, giao diện       Thay thế trong Office: Segoe UI
