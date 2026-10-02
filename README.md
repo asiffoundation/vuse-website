@@ -102,6 +102,8 @@ Dùng khi tài khoản GitHub hiện tại đã liên kết với một tài kho
 
 ## Việc cần thay bằng thông tin thật
 
+> Danh sách đầy đủ, chi tiết từng mục: [`NOI-DUNG-CAN-BO-SUNG.md`](NOI-DUNG-CAN-BO-SUNG.md).
+
 - [ ] Thông tin chuyển khoản trong `src/lib/site.ts` (đang là mẫu).
 - [ ] Link nhúng Google Maps (`site.mapEmbed`) và link Fanpage chính xác.
 - [ ] Ảnh thật: thay file trong `public/images/site/` (danh sách ở `src/lib/media.ts`); ảnh dự án/tin tức và logo đối tác upload qua `/admin`.
