@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" width="900" height="1200" preserveAspectRatio="xMidYMid slice">
+<!-- ẢNH TẠM: thay bằng ảnh thật cùng tên (xem src/lib/media.ts) -->
+<defs>
+<linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b7b48"/><stop offset="1" stop-color="#062218"/></linearGradient>
+<radialGradient id="sun" cx="0.70" cy="0.24" r="0.55"><stop offset="0" stop-color="#ffd416" stop-opacity=".85"/><stop offset=".35" stop-color="#ffd416" stop-opacity=".25"/><stop offset="1" stop-color="#ffd416" stop-opacity="0"/></radialGradient>
+<filter id="b" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="10"/></filter>
+<filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .07 0"/></filter>
+<linearGradient id="v" x1="0" y1="0" x2="0" y2="1"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".45"/></linearGradient>
+</defs>
+<rect width="900" height="1200" fill="url(#g)"/>
+<rect width="900" height="1200" fill="url(#sun)"/>
+<g filter="url(#b)"><circle cx="202" cy="951" r="77" fill="#0b7b48" opacity="0.09"/><circle cx="643" cy="693" r="14" fill="#0b7b48" opacity="0.30"/><circle cx="436" cy="919" r="34" fill="#ffffff" opacity="0.12"/><circle cx="305" cy="683" r="79" fill="#ffd416" opacity="0.32"/><circle cx="91" cy="653" r="71" fill="#ffd416" opacity="0.16"/><circle cx="174" cy="84" r="55" fill="#0b7b48" opacity="0.10"/><circle cx="80" cy="590" r="71" fill="#ffd416" opacity="0.26"/><circle cx="782" cy="585" r="58" fill="#ffd416" opacity="0.08"/><circle cx="407" cy="547" r="29" fill="#0b7b48" opacity="0.22"/><circle cx="671" cy="607" r="22" fill="#ffffff" opacity="0.29"/><circle cx="870" cy="394" r="44" fill="#ffffff" opacity="0.18"/><circle cx="764" cy="259" r="23" fill="#ffffff" opacity="0.12"/><circle cx="192" cy="638" r="29" fill="#ffd416" opacity="0.24"/><circle cx="563" cy="536" r="49" fill="#0b7b48" opacity="0.29"/><circle cx="758" cy="320" r="58" fill="#ffffff" opacity="0.24"/><circle cx="107" cy="590" r="68" fill="#ffffff" opacity="0.10"/><circle cx="376" cy="826" r="46" fill="#0b7b48" opacity="0.16"/><circle cx="835" cy="543" r="38" fill="#0b7b48" opacity="0.28"/><circle cx="59" cy="492" r="63" fill="#ffd416" opacity="0.33"/><circle cx="879" cy="232" r="45" fill="#ffd416" opacity="0.11"/><circle cx="735" cy="325" r="61" fill="#ffd416" opacity="0.18"/><circle cx="109" cy="352" r="28" fill="#0b7b48" opacity="0.25"/></g>
+<path d="M0 936 C 225 792 495 960 900 861 L 900 1200 L 0 1200 Z" fill="#062218" opacity=".55" filter="url(#b)"/>
+<rect width="900" height="1200" fill="url(#v)"/>
+<rect width="900" height="1200" filter="url(#n)"/>
+</svg>

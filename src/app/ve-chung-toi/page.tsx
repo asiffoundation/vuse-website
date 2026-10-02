@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Clover from "@/components/Clover";
 import PageHero from "@/components/PageHero";
+import Photo from "@/components/Photo";
+import { media } from "@/lib/media";
 import Reveal from "@/components/Reveal";
 import SectionTitle from "@/components/SectionTitle";
 import { cloverValues, values } from "@/lib/sample-data";
@@ -18,11 +20,15 @@ const logoMeaning = [
 export default function About() {
   return (
     <>
-      <PageHero eyebrow="Về chúng tôi" title="Một vòng tròn tương trợ — nơi không ai bị bỏ lại phía sau." sub="Khởi nguồn từ lòng Nhân ái, chúng tôi hành động với sự thấu cảm và tôn trọng, đặt phẩm giá và hạnh phúc của mỗi con người lên hàng đầu." />
+      <PageHero eyebrow="Về chúng tôi" title="Một vòng tròn tương trợ — nơi không ai bị bỏ lại phía sau." sub="Khởi nguồn từ lòng Nhân ái, chúng tôi hành động với sự thấu cảm và tôn trọng, đặt phẩm giá và hạnh phúc của mỗi con người lên hàng đầu." image={media.page.about} />
 
       <section className="py-24 md:py-32">
+        <div className="mx-auto mb-16 grid max-w-7xl gap-4 px-5 md:grid-cols-[1fr_1.5fr]">
+          <Reveal className="relative aspect-[4/5] overflow-hidden rounded-[2rem] md:aspect-auto"><Photo src={media.about[0].src} alt={media.about[0].alt} fill sizes="(max-width:768px) 100vw, 480px" /></Reveal>
+          <Reveal delay={0.1} className="relative aspect-[16/10] overflow-hidden rounded-[2rem]"><Photo src={media.about[1].src} alt={media.about[1].alt} fill sizes="(max-width:768px) 100vw, 760px" /></Reveal>
+        </div>
         <div className="mx-auto grid max-w-7xl gap-14 px-5 lg:grid-cols-2">
-          <SectionTitle eyebrow="Câu chuyện" title={<>Giá trị cuộc đời tạo ra từ <span className="text-gradient-green">chính những điều ta làm được.</span></>} />
+          <SectionTitle eyebrow="Câu chuyện" title={<>Giá trị cuộc đời tạo ra từ <span className="text-viet">chính những điều ta làm được.</span></>} />
           <Reveal delay={0.1} className="space-y-4 text-lg leading-relaxed text-ink-soft">
             <p>Chúng tôi không chỉ nhìn thấy những khó khăn, mà còn nhìn thấy khát vọng và sức mạnh tiềm tàng bên trong mỗi người.</p>
             <p>Việt Úc kiến tạo cơ hội, trao đi những công cụ cần thiết về <b className="text-ink">tri thức, sức khỏe và sinh kế</b> để mỗi người tự tin khai phá tiềm năng và làm chủ tương lai.</p>
@@ -47,7 +53,7 @@ export default function About() {
                     <Clover className="size-9 text-sun" />
                     <p className="mt-3 text-[13px] font-bold uppercase tracking-[0.16em] text-aura">{c.en}</p>
                     <h3 className="text-2xl font-extrabold">{c.vi}</h3>
-                    <p className="mt-2 text-sm text-white/70">{c.text}</p>
+                    <p className="mt-2 text-base text-white/85">{c.text}</p>
                   </div>
                 </Reveal>
               ))}
@@ -58,7 +64,7 @@ export default function About() {
               <Reveal key={m.t} delay={i * 0.06}>
                 <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
                   <h4 className="text-lg font-extrabold text-sun">{m.t}</h4>
-                  <p className="mt-2 text-sm leading-relaxed text-white/75">{m.d}</p>
+                  <p className="mt-2 text-base leading-relaxed text-white/85">{m.d}</p>
                 </div>
               </Reveal>
             ))}
@@ -83,7 +89,7 @@ export default function About() {
                   <span className="text-6xl font-black text-viet/15 transition group-hover:text-sun">0{i + 1}</span>
                   <p className="mt-2 text-[13px] font-extrabold uppercase tracking-[0.16em] text-amber-ink">{v.en}</p>
                   <h3 className="text-2xl font-extrabold">{v.vi}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-soft">{v.text}</p>
+                  <p className="mt-2 text-base leading-relaxed text-ink-soft">{v.text}</p>
                 </div>
               </Reveal>
             ))}
