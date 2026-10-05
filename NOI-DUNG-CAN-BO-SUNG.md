@@ -14,9 +14,9 @@ Cột "Sửa ở đâu": **/admin** = trang quản trị (không cần code); **
 | [ ] | **Mục tiêu gây quỹ & số đã quyên góp** từng dự án — chỉ nhập khi có số thật; để trống thì thanh tiến độ tự ẩn | Số mẫu 136/200tr, 58/150tr, 214/300tr (chỉ hiện khi chưa nối Supabase) | /admin → Dự án (sau khi chạy migration `0004`) |
 | [ ] | **Tin tức** | Mẫu, trong đó có bài "Trao 50 suất học bổng" là **sự kiện chưa xảy ra** | /admin → Tin tức (sửa hoặc xoá) |
 
-## 2. Ảnh — đang là ảnh tạm (mờ, màu thương hiệu)
+## 2. Ảnh — đang là ảnh minh hoạ từ Pexels
 
-Unsplash chặn tải ảnh tự động nên website không nhúng ảnh Unsplash trực tiếp được. Cách làm: tải ảnh về máy (ảnh thật của Việt Úc, hoặc ảnh minh hoạ tải tay từ Unsplash — mã ảnh gợi ý ghi trong `src/lib/media.ts`), đặt tên theo bảng dưới rồi gửi cho người kỹ thuật/Claude, hoặc tự chép vào `public/images/site/` và đổi đuôi `.svg` → `.jpg` trong `src/lib/media.ts`. Ảnh có người: cần sự đồng ý của người trong ảnh, đặc biệt với trẻ em.
+Website đang dùng **24 ảnh minh hoạ miễn phí từ Pexels** (giấy phép Pexels: dùng thương mại, không bắt buộc ghi nguồn), file `public/images/site/px-<mã>.jpg`, ảnh gốc tại `pexels.com/photo/<mã>`. Đây **không phải ảnh hoạt động của Việt Úc** — nên thay dần bằng ảnh thật. Ảnh chân dung nhân vật câu chuyện cố ý để trống. Cách thay: chép ảnh vào `public/images/site/` rồi sửa tên file ở dòng tương ứng trong `src/lib/media.ts` (hoặc gửi ảnh cho người kỹ thuật/Claude). Ảnh có người: cần sự đồng ý của người trong ảnh, đặc biệt với trẻ em.
 
 | | Ảnh | Số lượng | Khổ gợi ý | Tên file |
 |---|---|---|---|---|

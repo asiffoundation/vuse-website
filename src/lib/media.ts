@@ -1,71 +1,69 @@
 /**
  * TẤT CẢ ẢNH CỐ ĐỊNH CỦA WEBSITE — sửa ở đây khi có ảnh thật.
  *
- * Hiện là ẢNH TẠM (SVG màu thương hiệu) trong `public/images/site/`.
- * Mã Unsplash ở tham số thứ 3 chỉ để GHI CHÚ ảnh minh hoạ gợi ý (unsplash.com/photos/<mã>) —
- * Unsplash chặn tải ảnh tự động nên website không nhúng trực tiếp được.
+ * Hiện dùng ẢNH MINH HOẠ từ Pexels (giấy phép Pexels: dùng miễn phí, kể cả thương mại, không bắt buộc ghi nguồn),
+ * file `public/images/site/px-<mã>.jpg` — ảnh gốc tại pexels.com/photo/<mã>.
+ * Đây KHÔNG phải ảnh hoạt động của Việt Úc — nên thay bằng ảnh thật trước khi công bố chính thức.
  *
- * Thay ảnh: chép file vào `public/images/site/` (vd. `hero-1.jpg`; ảnh ngang ≥ 1920px,
- * ảnh dọc ≥ 1200px), rồi đổi đuôi `.svg` → `.jpg` ở dòng tương ứng và sửa mô tả cho đúng ảnh.
+ * Thay ảnh: chép file vào `public/images/site/` (ảnh ngang ≥ 1920px, ảnh dọc ≥ 1200px),
+ * rồi sửa tên file và mô tả ở dòng tương ứng bên dưới.
  *
  * Ảnh dự án / tin tức không nằm ở đây: tải lên trong /admin (ảnh bìa).
  */
 export type Media = { src: string; alt: string; fallback?: string };
 
-/** file = ảnh trong public/images/site; _unsplash = mã ảnh gợi ý (chỉ để ghi chú) */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const m = (file: string, alt: string, _unsplash?: string): Media => ({ src: `/images/site/${file}`, alt });
+const m = (file: string, alt: string): Media => ({ src: `/images/site/${file}`, alt });
 
 export const media = {
   // 5 slide banner trang chủ — ảnh ngang 16:9
   hero: [
-    m("hero-1.svg", "Các em nhỏ vùng cao Gia Lai cười tươi", "AEaTUnvneik"),
-    m("hero-2.svg", "Trẻ em vui chơi trên cánh đồng", "0DPyb8t_KfI"),
-    m("hero-3.svg", "Cụ bà đội nón lá mỉm cười", "P-NKvMEzA2A"),
-    m("hero-4.svg", "Người phụ nữ ngồi xe lăn trong công viên", "UlG-z-Kz_AI"),
-    m("hero-5.svg", "Người nông dân đội nón lá trên đồng lúa", "4trSs-cdM6c"),
+    m("px-14316313.jpg", "Hai em nhỏ ở Lào Cai cười tươi"),
+    m("px-35131382.jpg", "Học sinh tiểu học trong lớp học"),
+    m("px-29482552.jpg", "Cụ bà đội nón lá ở Hội An"),
+    m("px-8415672.jpg", "Người ngồi xe lăn dạo công viên cùng người thân"),
+    m("px-29677340.jpg", "Người nông dân cùng trâu trên đồng lúa chín"),
   ],
   // 4 nhóm đối tượng — ảnh dọc 3:4
   audience: [
-    m("audience-1.svg", "Trẻ em, học sinh, sinh viên", "cqG5fcZQHQg"),
-    m("audience-2.svg", "Người cao tuổi", "P-NKvMEzA2A"),
-    m("audience-3.svg", "Người khuyết tật", "GIJWGUXKEzY"),
-    m("audience-4.svg", "Người có hoàn cảnh khó khăn", "DdnLKP_Yc2Y"),
+    m("px-33985331.jpg", "Hai em nhỏ vùng cao Hà Giang học bài"),
+    m("px-27246756.jpg", "Cụ bà đội nón lá ở chợ"),
+    m("px-6194683.jpg", "Người phụ nữ ngồi xe lăn"),
+    m("px-8703380.jpg", "Nông dân cấy lúa"),
   ],
   // 4 lĩnh vực (theo thứ tự lĩnh vực) — ảnh ngang 16:10
   program: [
-    m("program-1.svg", "Lớp học của các em nhỏ", "cqG5fcZQHQg"),
-    m("program-2.svg", "Bác sĩ khám sức khỏe cho trẻ", "QY8-IuUV3wk"),
-    m("program-3.svg", "Học nghề may", "S49g-JZK_7g"),
-    m("program-4.svg", "Hai bàn tay nắm lấy nhau", "mwGrAl1X514"),
+    m("px-18395403.jpg", "Giờ học trong lớp"),
+    m("px-7446997.jpg", "Bác sĩ khám sức khỏe cho em nhỏ"),
+    m("px-7147642.jpg", "Người phụ nữ học may"),
+    m("px-6995244.jpg", "Tình nguyện viên phát suất ăn"),
   ],
   // Ảnh bìa dự phòng cho dự án / tin tức chưa có ảnh trong /admin
-  project: [m("project-1.svg", "", "cqG5fcZQHQg"), m("project-2.svg", "", "GIJWGUXKEzY"), m("project-3.svg", "", "QY8-IuUV3wk")],
-  post: [m("post-1.svg", "", "HQlVeK0wb_w"), m("post-2.svg", "", "FQEYqBdXj2g"), m("post-3.svg", "", "0DPyb8t_KfI")],
+  project: [m("px-33985331.jpg", ""), m("px-8415672.jpg", ""), m("px-5998445.jpg", "")],
+  post: [m("px-34022738.jpg", ""), m("px-6646918.jpg", ""), m("px-18395403.jpg", "")],
   // Khoảnh khắc — dải ảnh chạy ở trang chủ
   moments: [
-    m("moment-1.svg", "", "AEaTUnvneik"),
-    m("moment-2.svg", "", "cJfHT9XjOoU"),
-    m("moment-3.svg", "", "ibZ2QiKkEsg"),
-    m("moment-4.svg", "", "8wiECX4Cga4"),
-    m("moment-5.svg", "", "FQEYqBdXj2g"),
-    m("moment-6.svg", "", "dliEVD2QhKQ"),
-    m("moment-7.svg", "", "rXqfl7MKEJ4"),
-    m("moment-8.svg", "", "HQlVeK0wb_w"),
+    m("px-30481773.jpg", ""),
+    m("px-34663391.jpg", ""),
+    m("px-9488193.jpg", ""),
+    m("px-16495497.jpg", ""),
+    m("px-34022738.jpg", ""),
+    m("px-25584155.jpg", ""),
+    m("px-8731906.jpg", ""),
+    m("px-6646918.jpg", ""),
   ],
   // Chân dung nhân vật: CỐ Ý để ảnh tạm — không gán ảnh người lạ cho một câu chuyện có tên
   story: m("story.svg", "Chân dung nhân vật câu chuyện"),
-  storyWide: m("story-wide.svg", "Những bàn tay nắm lấy nhau", "bZQJLStVYWs"),
-  cta: m("cta.svg", "Những bàn tay cùng chung sức", "Db-stA8meJY"),
-  about: [m("about-1.svg", "Cụ bà đội nón lá", "P-NKvMEzA2A"), m("about-2.svg", "Trẻ em vui chơi", "0DPyb8t_KfI")],
+  storyWide: m("px-28157387.jpg", "Cánh đồng lúa lúc hoàng hôn"),
+  cta: m("px-9488193.jpg", "Hai em nhỏ khoác vai nhau cười"),
+  about: [m("px-30481773.jpg", "Hai em nhỏ mặc áo dài"), m("px-6995244.jpg", "Tình nguyện viên phát suất ăn")],
   // Ảnh đầu trang con
   page: {
-    about: m("page-about.svg", "Những bàn tay cùng chung sức", "Db-stA8meJY"),
-    programs: m("page-programs.svg", "Người dân trên đồng lúa", "DdnLKP_Yc2Y"),
-    projects: m("page-projects.svg", "Các em nhỏ cười tươi", "AEaTUnvneik"),
-    news: m("page-news.svg", "Khoảnh khắc đời thường", "HQlVeK0wb_w"),
-    join: m("page-join.svg", "Những bàn tay đoàn kết", "FQEYqBdXj2g"),
-    contact: m("page-contact.svg", "Cánh đồng lúa Việt Nam", "4trSs-cdM6c"),
+    about: m("px-6646918.jpg", "Tình nguyện viên"),
+    programs: m("px-8703380.jpg", "Nông dân cấy lúa"),
+    projects: m("px-35131382.jpg", "Học sinh trong lớp học"),
+    news: m("px-16495497.jpg", "Đời sống nông thôn"),
+    join: m("px-7156178.jpg", "Tình nguyện viên đóng gói quà"),
+    contact: m("px-28157387.jpg", "Cánh đồng lúa"),
   },
 };
 
