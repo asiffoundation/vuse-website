@@ -1,27 +1,20 @@
 /**
  * TẤT CẢ ẢNH CỐ ĐỊNH CỦA WEBSITE — sửa ở đây khi có ảnh thật.
  *
- * Hiện dùng ẢNH MINH HOẠ MẪU từ Unsplash (giấy phép Unsplash: dùng miễn phí, kể cả thương mại).
- * Đây KHÔNG phải ảnh hoạt động của Việt Úc — thay bằng ảnh thật trước khi công bố chính thức.
- * Nếu ảnh Unsplash không tải được, website tự dùng ảnh tạm SVG cùng tên trong `public/images/site/`.
+ * Hiện là ẢNH TẠM (SVG màu thương hiệu) trong `public/images/site/`.
+ * Mã Unsplash ở tham số thứ 3 chỉ để GHI CHÚ ảnh minh hoạ gợi ý (unsplash.com/photos/<mã>) —
+ * Unsplash chặn tải ảnh tự động nên website không nhúng trực tiếp được.
  *
- * Thay ảnh thật: chép file vào `public/images/site/` (vd. `hero-1.jpg`; ảnh ngang ≥ 1920px,
- * ảnh dọc ≥ 1200px), rồi ở dòng tương ứng XOÁ mã Unsplash và đổi đuôi `.svg` → `.jpg`:
- *   m("ten-anh.svg", "mô tả", "MaUnsplash")   →   m("ten-anh.jpg", "Mô tả đúng ảnh thật")
+ * Thay ảnh: chép file vào `public/images/site/` (vd. `hero-1.jpg`; ảnh ngang ≥ 1920px,
+ * ảnh dọc ≥ 1200px), rồi đổi đuôi `.svg` → `.jpg` ở dòng tương ứng và sửa mô tả cho đúng ảnh.
  *
  * Ảnh dự án / tin tức không nằm ở đây: tải lên trong /admin (ảnh bìa).
  */
 export type Media = { src: string; alt: string; fallback?: string };
 
-const fallbacks: Record<string, string> = {};
-
-/** file = ảnh tạm trong public/images/site; unsplash = mã ảnh (11 ký tự cuối của link unsplash.com/photos/...) */
-const m = (file: string, alt: string, unsplash?: string): Media => {
-  const local = `/images/site/${file}`;
-  const src = unsplash ? `https://unsplash.com/photos/${unsplash}/download` : local;
-  fallbacks[src] = local;
-  return { src, alt, fallback: local };
-};
+/** file = ảnh trong public/images/site; _unsplash = mã ảnh gợi ý (chỉ để ghi chú) */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const m = (file: string, alt: string, _unsplash?: string): Media => ({ src: `/images/site/${file}`, alt });
 
 export const media = {
   // 5 slide banner trang chủ — ảnh ngang 16:9
@@ -77,6 +70,3 @@ export const media = {
 };
 
 export const pick = (list: Media[], i: number) => list[((i % list.length) + list.length) % list.length];
-
-/** Ảnh tạm tương ứng với một ảnh từ xa (dùng khi ảnh từ xa lỗi). */
-export const fallbackFor = (src: string) => fallbacks[src];
