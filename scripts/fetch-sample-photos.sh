@@ -11,7 +11,12 @@ echo "Ảnh minh hoạ từ Unsplash (Unsplash License) — thay bằng ảnh th
 while read -r name id; do
   [[ -z "${name:-}" || "$name" == \#* ]] && continue
   if [[ "$name" == hero-* || "$name" == page-* || "$name" == story-wide || "$name" == cta || "$name" == program-* || "$name" == post-* || "$name" == about-2 ]]; then w=1920; else w=1200; fi
-  html=$(curl -sL --max-time 30 -A "$UA" "https://unsplash.com/photos/$id" || true)
+  html=""
+  for ua in "curl/8.5.0" "$UA"; do
+    html=$(curl -sL --max-time 30 -A "$ua" -H "Accept-Language: en-US,en;q=0.9" "https://unsplash.com/photos/$id" || true)
+    printf '%s' "$html" | grep -q 'og:image' && break
+  done
+  if [[ -z "${shown:-}" ]] && ! printf '%s' "$html" | grep -q 'og:image'; then shown=1; echo "--- trang trả về (debug) ---"; printf '%s' "$html" | head -c 1500; echo; echo "---"; fi
   og=$(printf '%s' "$html" | grep -oE '<meta[^>]+property="og:image"[^>]+>' | head -1 | grep -oE 'content="[^"]+"' | sed -E 's/content="//; s/"$//; s/&amp;/\&/g')
   if [[ "$og" == https://images.unsplash.com/photo-* ]]; then
     url="${og%%\?*}?w=$w&q=78&fm=jpg&fit=max"
@@ -19,7 +24,7 @@ while read -r name id; do
     url="https://unsplash.com/photos/$id/download?force=true&w=$w"
   fi
   tmp=$(mktemp)
-  curl -sL --max-time 60 -A "$UA" -o "$tmp" "$url" || true
+  curl -sL --max-time 60 -A "curl/8.5.0" -o "$tmp" "$url" || true
   mime=$(file -b --mime-type "$tmp"); size=$(stat -c %s "$tmp")
   final=$(curl -sIL --max-time 30 -A "$UA" -o /dev/null -w '%{url_effective}' "$url" || true)
   if [[ "$mime" == image/jpeg && "$size" -gt 20000 && "$final" != *plus.unsplash.com* && "$final" != *premium_photo* ]]; then
