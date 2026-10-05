@@ -7,7 +7,7 @@
  *
  * Thay ảnh thật: chép file vào `public/images/site/` (vd. `hero-1.jpg`; ảnh ngang ≥ 1920px,
  * ảnh dọc ≥ 1200px), rồi ở dòng tương ứng XOÁ mã Unsplash và đổi đuôi `.svg` → `.jpg`:
- *   m("hero-1.svg", "...", "AEaTUnvneik")   →   m("hero-1.jpg", "Mô tả đúng ảnh thật")
+ *   m("ten-anh.svg", "mô tả", "MaUnsplash")   →   m("ten-anh.jpg", "Mô tả đúng ảnh thật")
  *
  * Ảnh dự án / tin tức không nằm ở đây: tải lên trong /admin (ảnh bìa).
  */
