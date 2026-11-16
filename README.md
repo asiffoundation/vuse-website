@@ -25,7 +25,7 @@ Chưa có `.env.local` → site dùng **dữ liệu mẫu** (`src/lib/sample-dat
 
 | Route | Nội dung |
 |---|---|
-| `/` | Hero slider 5 slide, giới thiệu, 4 nhóm đối tượng, lĩnh vực, dự án, tầm nhìn/sứ mệnh, giá trị, đối tác, tin tức, CTA |
+| `/` | Banner 5 slide, tuyên ngôn (chữ sáng dần theo cuộn), 4 nhóm đối tượng, ảnh mở rộng khi cuộn, 4 lĩnh vực (thẻ xếp chồng), dự án nổi bật + tiến độ gây quỹ, câu chuyện nhân vật, dải khoảnh khắc, tin tức, đối tác (chỉ hiện khi có logo thật), CTA |
 | `/ve-chung-toi` | Câu chuyện, ý nghĩa logo, tầm nhìn/sứ mệnh, 5 giá trị cốt lõi |
 | `/linh-vuc` | 4 lĩnh vực: Giáo dục, Sức khỏe, Việc làm & Sinh kế, Cộng đồng yếu thế |
 | `/du-an`, `/du-an/[slug]` | Danh sách & chi tiết dự án |
@@ -39,7 +39,7 @@ Chưa có `.env.local` → site dùng **dữ liệu mẫu** (`src/lib/sample-dat
 
 - Font: **Plus Jakarta Sans** (`next/font`, subset `vietnamese`).
 - Màu: theo bộ nhận diện v1.0 — token ở `src/app/globals.css` (`@theme`).
-- Hiệu ứng: `motion` (reveal, tilt 3D, slider), aurora/grain thuần CSS, tôn trọng `prefers-reduced-motion`.
+- Hiệu ứng: `motion` (reveal, slider, cuộn), tôn trọng `prefers-reduced-motion`.
 - Hướng "Câu chuyện thật": ảnh lớn, nền sáng, chữ ≥ 15px. Hiệu ứng: banner ảnh Ken Burns, chữ sáng dần theo cuộn, ảnh mở rộng khi cuộn, thẻ lĩnh vực xếp chồng (sticky), dải ảnh chạy, thanh tiến độ gây quỹ, nút chia sẻ Facebook/Zalo.
 - **Ảnh cố định** (banner, nhóm đối tượng, lĩnh vực, khoảnh khắc…) khai báo ở `src/lib/media.ts`, file ở `public/images/site/`. Hiện là **ảnh minh hoạ từ Pexels** (`px-<mã>.jpg`) — thay bằng ảnh thật rồi sửa tên file trong `media.ts`.
 - Ảnh dự án / tin tức: tải lên ở `/admin` (Supabase Storage bucket `media`); chưa có thì dùng ảnh tạm.
@@ -55,6 +55,7 @@ src/
     data.ts               # đọc dữ liệu công khai (fallback sample-data)
     actions.ts            # Server Actions cho form công khai
     admin-actions.ts      # Server Actions cho CMS (yêu cầu đăng nhập)
+    media.ts              # khai báo ảnh cố định (public/images/site/)
     sample-data.ts, site.ts, types.ts, email.ts
   proxy.ts                # Next 16: bảo vệ /admin/*
 supabase/migrations/      # 0001 bảng+RLS, 0002 storage, 0003 seed, 0004 gây quỹ dự án
@@ -76,29 +77,21 @@ supabase/migrations/      # 0001 bảng+RLS, 0002 storage, 0003 seed, 0004 gây 
 3. Push nhánh chính → production; mỗi PR → preview URL.
 4. Gắn domain `www.vu-se.com` trong **Domains**.
 
-> Lưu ý: một tài khoản GitHub chỉ liên kết được với **một** tài khoản Vercel. Nếu GitHub hiện tại đã gắn với Vercel khác, xem mục dưới.
+> Lưu ý: một tài khoản GitHub chỉ liên kết được với **một** tài khoản Vercel — xem mục "Về tài khoản GitHub" bên dưới.
 
-## Chuyển sang tài khoản GitHub mới
+## Về tài khoản GitHub
 
-Dùng khi tài khoản GitHub hiện tại đã liên kết với một tài khoản Vercel khác.
+Repo đã được chuyển sang tài khoản mới: **`asiffoundation/vuse-website`** (lý do: một tài khoản GitHub chỉ liên kết được với một tài khoản Vercel). Link repo cũ tự chuyển hướng, nhưng nên cập nhật `origin` trên máy:
 
-1. Tạo tài khoản GitHub mới (email khác, bật 2FA).
-2. Đưa repo sang tài khoản mới — chọn một cách:
-   - **Transfer ownership** (giữ nguyên lịch sử): repo → Settings → Danger Zone → *Transfer ownership* → nhập tên tài khoản mới → tài khoản mới chấp nhận qua email.
-   - **Hoặc push sang repo mới:**
-     ```bash
-     git clone https://github.com/<tai-khoan-cu>/vuse-website.git
-     cd vuse-website
-     git remote set-url origin https://github.com/<tai-khoan-moi>/vuse-website.git
-     git push -u origin main
-     ```
-3. Vercel: **Account Settings → Authentication** → kết nối GitHub mới → *Add New → Project* → Import `vuse-website`.
-4. Thêm biến môi trường theo `.env.example`, Deploy, rồi gắn domain.
-5. Sau khi chuyển: cập nhật `origin` trên máy (`git remote set-url origin ...`) và cấp lại quyền repo cho công cụ/AI đang dùng.
+```bash
+git remote set-url origin https://github.com/asiffoundation/vuse-website.git
+```
+
+Quy trình làm việc: tạo nhánh → mở PR vào `main` → merge (mỗi PR có preview URL trên Vercel).
 
 ## Thứ tự triển khai khuyến nghị
 
-1. ~~Chuyển GitHub~~ (đã xong: `asiffoundation/vuse-website`) → 2. Tạo Supabase, chạy `0001`–`0003`, tạo user admin → 3. Import Vercel + env vars → 4. Đăng nhập `/admin` kiểm tra → 5. Gắn domain `www.vu-se.com` → 6. Thay thông tin thật (danh sách dưới).
+1. ~~Chuyển GitHub~~ (đã xong: `asiffoundation/vuse-website`) → 2. Tạo Supabase, chạy `0001`–`0004`, tạo user admin → 3. Import Vercel + env vars → 4. Đăng nhập `/admin` kiểm tra → 5. Gắn domain `www.vu-se.com` → 6. Thay thông tin thật (danh sách dưới).
 
 ## Việc cần thay bằng thông tin thật
 
